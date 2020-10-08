@@ -2,9 +2,10 @@ import React from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 const Login = props => {
-
+    let history = useHistory();
    const login = (e) => {
         e.preventDefault()
         let configObj = {method: 'POST',
@@ -17,6 +18,7 @@ const Login = props => {
         .then(res => res.json())
         .then(employee => {
             localStorage.token = employee.token
+            history.push("/dashboard");
         })
     }
     
@@ -40,12 +42,14 @@ const Login = props => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {email: state.loginReducer.email, 
             password: state.loginReducer.password, 
             baseUrl: state.urlReducer.baseUrl}
 }
 
 const mapDispatchToProps = (dispatch) => {
+    console.log(dispatch)
     return{
         new_email_value:((value) => dispatch({type: 'new_email_value', payload: value})),
         new_password_value:((value) => dispatch({type: 'new_password_value', payload: value}))
