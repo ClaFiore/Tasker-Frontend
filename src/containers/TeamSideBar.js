@@ -1,25 +1,38 @@
-import React from 'react'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import { useHistory } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import './TeamMemberViewCont.css'
+
 
 const TeamSideBar = props => {
-    console.log(props)
+console.log(props)
+
+
     return(
-        <div>
-            SIDEBAR
+        <div className='sidebar-div'>
+            <div className='image-div'>
+                <img className='photo-img' src={props.current_user.employee.photo}/>
+            </div>
+            <div className='profile-info'>
+                <h3>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.first_name}</h3>
+                <h4>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.last_name}</h4>
+                <h5>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.title}</h5>
+                <h5>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.department}</h5>
+                <h5>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.team.name}</h5>
+                {/* <p>{props.current_user.team.name}</p> */}
+            </div>
         </div>
+
     )
 }
 
 const mapStateToProps = (state) => {
     console.log(state)
-    return state
+    return {current_user: state.employeeReducer.current_user}
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log(dispatch)
+    
     return{
        
     }

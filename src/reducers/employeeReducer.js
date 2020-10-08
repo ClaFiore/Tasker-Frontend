@@ -1,4 +1,4 @@
-let initialState = {current_user: {}}
+let initialState = {current_user: {employee: 'loading'}}
 
 
 let employeeReducer = (state = initialState, action) => {

@@ -1,0 +1,84 @@
+.container-div-dashboard{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
+    /* position: absolute; */
+  }
+
+  .sub-container-div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+.sidebar-div{
+    display: flex;
+    /* position: relative; */
+    flex-direction: column;
+    align-self: stretch;
+    height: 100vh;
+    width: 20vw;
+    flex-basis: auto;
+    background-color: #8FD5FF;
+    /* z-index: 1; */
+}
+
+.calendar-div-container{
+    width: 70vw;
+    height: 70vh;
+    background-color: #0F61D4;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 5%;
+    /* z-index: 1; */
+}
+
+
+.navbar {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-basis: auto;
+    width: 80vw;
+    height: 60px;
+    background: red;
+    border: 1 px solid #0F61D3;
+    /* position: absolute; */
+    z-index: 1; 
+}
+
+.menu{
+    justify-content: flex-end;
+    color: #0F61D3;
+    margin: 10px;
+    padding: 5px;
+    /* border-radius: 5px, #0F61D3; */
+}
+
+
+/* SIDEBAR */
+.image-div{
+    display: flex;
+    justify-self: start;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border:2px black;
+    margin-left: 30px;
+}
+.photo-img{
+    width: 100px;
+    height: 100px;
+}
+.profile-info{
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

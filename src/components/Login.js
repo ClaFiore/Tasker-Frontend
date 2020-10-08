@@ -5,8 +5,11 @@ import {connect} from 'react-redux'
 import { useHistory } from "react-router-dom";
 
 const Login = props => {
-    let history = useHistory();
-   const login = (e) => {
+let history = useHistory();
+
+console.log(props)
+   
+const login = (e) => {
         e.preventDefault()
         let configObj = {method: 'POST',
                         headers: {'Content-Type': 'application/json'},
@@ -14,13 +17,20 @@ const Login = props => {
                           email: props.email,
                           password: props.password
                         })}
-        fetch(props.baseUrl + '/login', configObj)
-        .then(res => res.json())
-        .then(employee => {
-            localStorage.token = employee.token
-            history.push("/dashboard");
-        })
+        fetch(props.baseUrl + 'login', configObj)
+            .then(res => res.json())
+            .then(employee => {
+                    props.add_current_user(employee)
+                    console.log(employee)
+                    localStorage.setItem('token', employee.token)
+                    props.add_current_user(employee)
+                    setTimeout(() => goToDashboard(), 50)
+                })
     }
+
+const goToDashboard = () => {
+    props.history.push("/dashboard")
+}
     
     return(
         <Form onSubmit={(e) => login(e)}>
@@ -41,17 +51,19 @@ const Login = props => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+
     return {email: state.loginReducer.email, 
             password: state.loginReducer.password, 
-            baseUrl: state.urlReducer.baseUrl}
+            baseUrl: state.urlReducer.baseUrl,
+            }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log(dispatch)
+
     return{
         new_email_value:((value) => dispatch({type: 'new_email_value', payload: value})),
-        new_password_value:((value) => dispatch({type: 'new_password_value', payload: value}))
+        new_password_value:((value) => dispatch({type: 'new_password_value', payload: value})),
+        add_current_user:((employee)=> dispatch({type: 'add_current_user', payload: employee}))
     }
 }
 

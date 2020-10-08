@@ -1,32 +1,38 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
 import { useHistory } from "react-router-dom";
-import './TeamMemberNav.css'
+import './TeamMemberViewCont.css'
 
 const TeamMemberNav = props => {
-    console.log(props)
+console.log(props)
+
+    const handleMenu = (value) => {
+        switch(value){
+            case 'logout':
+            localStorage.clear()
+            // props.history.push("/login")
+            break
+        }
+        
+    }
     return(
         <div className='navbar'>
-             NAVBAR
-            <div className='settings'>
-                <img src={''}/>
-            </div>
+                            <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
+                                <option selected disabled>Menu</option>
+                                <option value='profile'>View My Profile</option>
+                                <option value='switch'>Switch Team</option>
+                                <option value='logout'>Logout</option>
+                            </select>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return state
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log(dispatch)
-    return{
-       
-    }
+ return dispatch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamMemberNav)

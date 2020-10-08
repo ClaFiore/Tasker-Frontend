@@ -1,13 +1,23 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
+import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import TeamMemberViewContainer from './TeamMemberViewContainer'
 import ManagerViewContainer from './ManagerViewContainer'
 
 const Dashboard = props => {
-    console.log(props)
+
+    // useEffect(() => {
+
+    //     let configObj = {method: 'GET', 
+    //                     headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
+    //                     }
+    //     debugger
+    //     fetch(props.baseUrl + 'employees/employee', configObj)
+    //     .then(res => res.json())
+    //     .then(employee => props.add_current_user(employee))
+    // },[])
+
     return(
         <div>
         {props.view === 'team_member' ? <TeamMemberViewContainer /> : <ManagerViewContainer />}
@@ -16,15 +26,15 @@ const Dashboard = props => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
-    return {view: state.dashboardReducer.view}
+ 
+    return {view: state.dashboardReducer.view, baseUrl: state.urlReducer.baseUrl, current_user: state.employeeReducer.current_user}
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log(dispatch)
+
     return{
-       
-    }
+        add_current_user:((employee)=> dispatch({type: 'add_current_user', payload: employee}))
+     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
