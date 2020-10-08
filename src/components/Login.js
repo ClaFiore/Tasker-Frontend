@@ -38,7 +38,6 @@ const Login = props => {
             </Button>
         </Form>
     )
-    
 }
 
 const mapStateToProps = (state) => {
