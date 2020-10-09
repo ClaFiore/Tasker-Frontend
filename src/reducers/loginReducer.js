@@ -1,17 +1,13 @@
-let initialState = {email: '', password: ''}
-
+let initialState = {logged_in: false}
 
 let loginReducer = (state = initialState, action) => {
     switch(action.type){
-        case 'new_email_value':
-        return {...state, 
-                email: action.payload}
-        case 'new_password_value':
+        case 'logged_in':
             return {...state,
-                    password: action.payload}
+                logged_in: action.payload}
         default:
             return state
+        }
     }
-}
 
 export default loginReducer

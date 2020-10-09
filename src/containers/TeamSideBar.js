@@ -14,7 +14,7 @@ console.log(props)
                 <img className='photo-img' src={props.current_user.employee.photo}/>
             </div>
             <div className='profile-info'>
-                <h3>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.first_name}</h3>
+                <h3>{props.current_user.employee.first_name}</h3>
                 <h4>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.last_name}</h4>
                 <h5>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.title}</h5>
                 <h5>{props.current_user.employee === 'loading' ? 'loading' : props.current_user.employee.department}</h5>
@@ -27,15 +27,14 @@ console.log(props)
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
-    return {current_user: state.employeeReducer.current_user}
+    return state.employeeReducer
 }
 
-const mapDispatchToProps = (dispatch) => {
+// const mapDispatchToProps = (dispatch) => {
     
-    return{
+//     return{
        
-    }
-}
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamSideBar)
+export default connect(mapStateToProps)(TeamSideBar)

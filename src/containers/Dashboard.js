@@ -4,19 +4,15 @@ import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import TeamMemberViewContainer from './TeamMemberViewContainer'
 import ManagerViewContainer from './ManagerViewContainer'
+import { fetchingEmployee } from '../actions'
 
 const Dashboard = props => {
-
-    // useEffect(() => {
-
-    //     let configObj = {method: 'GET', 
-    //                     headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
-    //                     }
-    //     debugger
-    //     fetch(props.baseUrl + 'employees/employee', configObj)
-    //     .then(res => res.json())
-    //     .then(employee => props.add_current_user(employee))
-    // },[])
+    useEffect(() => {
+        let configObj = {method: 'GET', 
+                        headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
+                        }
+       props.fetchingEmployee(configObj)
+    },[])
 
     return(
         <div>
@@ -26,14 +22,12 @@ const Dashboard = props => {
 }
 
 const mapStateToProps = (state) => {
- 
-    return {view: state.dashboardReducer.view, baseUrl: state.urlReducer.baseUrl, current_user: state.employeeReducer.current_user}
+    return state.dashboardReducer
 }
 
 const mapDispatchToProps = (dispatch) => {
-
     return{
-        add_current_user:((employee)=> dispatch({type: 'add_current_user', payload: employee}))
+        fetchingEmployee: (configObj) => { dispatch( fetchingEmployee(configObj) )}
      }
 }
 
