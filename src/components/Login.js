@@ -1,16 +1,15 @@
 import React from 'react'
-// import { useState } from 'react'
+import { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
-// import { useHistory } from "react-router-dom";
-// import { browserHistory } from 'react-router'
+import {Redirect} from 'react-router-dom'
+
 import './login.css'
 // const URL = 'http://localhost:3000/api/v1/'
 
 const Login = props => {
-    // const [email, changeEmail] = useState("")
-    // const [password, changePassword] = useState("")
+   
     
     const login = (e) => {
         e.preventDefault()
@@ -27,18 +26,20 @@ const Login = props => {
                 alert(employeeInfo.error)}
             else{
             props.add_current_user(employeeInfo)
-            localStorage.token = employeeInfo.token 
+            localStorage.token = employeeInfo.token
+            localStorage.team_id = employeeInfo.employee.team_id 
             props.logged_in(true)
-            goToDashboard()
         }
         })
     }
     
-    const goToDashboard = () => {
-        props.history.push('/dashboard')
-        }
-    
+   
 
+    if (props.logged){
+        return(
+            <Redirect to='/' />
+        )
+    }
     
     return(
         <div className='loginForm'>
@@ -63,7 +64,7 @@ const Login = props => {
 
 
 const mapStateToProps = (state) => {
-    return state
+    return {logged: state.loginReducer.logged_in}
 }
 
 const mapDispatchToProps = (dispatch) => {

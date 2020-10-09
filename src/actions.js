@@ -18,4 +18,27 @@ function fetchingEmployee(){
     }
 }
 
-export {fetchingEmployee, fetchedCurrent_Employee}
+
+function fetchedProjects(teamprojects){
+    return {
+        type: 'all_projects', payload: teamprojects}
+}
+
+function fetchingProjects(teamId){
+    let configObj = {method: 'GET', 
+    headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
+    }
+    return (dispatch) => {
+        fetch(URL + 'projects', configObj)
+        .then(res => res.json())
+        .then(allProjects => {
+            let teamprojects = allProjects.filter(project => project.team_id === teamId)
+            dispatch(fetchedProjects(teamprojects))
+        })
+        
+    }
+}
+
+
+
+export {fetchingEmployee, fetchedCurrent_Employee, fetchingProjects, fetchedProjects}

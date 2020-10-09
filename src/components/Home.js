@@ -1,7 +1,8 @@
 // import { useHistory } from "react-router-dom";
 import React from 'react'
-// import Login from "./Login";
+import {Redirect} from 'react-router-dom'
 import './home.css'
+import Dashboard from '../containers/Dashboard'
 
 const Home = props => {
     const login = () => {
@@ -10,8 +11,7 @@ const Home = props => {
 
     return(
         <div className='home-div'>
-            <h1>WELCOME TO TASKER</h1>
-            <button onClick={() => login()}>Login</button>
+            {localStorage.token ? <Redirect to='/dashboard'/> : <div> <h1>WELCOME TO TASKER</h1><button onClick={() => login()}>Login</button> </div>}
         </div>
     )
 }
