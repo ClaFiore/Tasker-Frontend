@@ -7,7 +7,6 @@ const ProjectCard = props => {
     const {title, content, status} = props.project
     return(
         <div>
-            <h5 style={{margin: '20px'}}>Back to Dashboard</h5>
             <div>
             <Card style={{ width: '18rem', margin: '20px' }}>
                 <Card.Body>

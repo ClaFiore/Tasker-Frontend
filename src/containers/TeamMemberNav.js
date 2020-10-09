@@ -11,6 +11,7 @@ const TeamMemberNav = props => {
             case 'logout':
             localStorage.clear()
             props.logged_in(false)
+            props.user_logout()
             break
             case 'projects':
                 props.changeActivity(value)
@@ -55,6 +56,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
+        user_logout: () => dispatch({type: 'USER_LOGOUT'})
     }
 }
 

@@ -1,11 +1,21 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 const Profile = props => {
+    console.log(props)
     return(
         <div>
-            PROFILE PAGE
+            Hello {props.employee.employee.first_name}!
         </div>
     )
 }
 
-export default Profile
+const mapStateToProps = state => {
+    return {
+        employee: state.employeeReducer.current_user
+    }
+}
+
+
+
+export default connect(mapStateToProps)(Profile)
