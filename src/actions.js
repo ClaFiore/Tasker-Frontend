@@ -39,6 +39,25 @@ function fetchingProjects(teamId){
     }
 }
 
+function updatedUser(updatedUser){
+    return {
+        type: 'add_current_user', payload: updatedUser}
+}
+
+function updatingUser(employee, token){
+    let configObj = {method: 'PATCH', 
+    headers: {'Content-Type': 'application/json', Accept: 'application/json', 'Authorization': `Bearer ${token}`},
+    body: JSON.stringify({employee})
+    }
+    
+    return (dispatch) => {
+        fetch(URL + 'employees/employee', configObj)
+        .then(res => res.json())
+        .then(updatedUser => {
+            dispatch(updatedUser(updatedUser))})
+    }
+}
 
 
-export {fetchingEmployee, fetchedCurrent_Employee, fetchingProjects, fetchedProjects}
+
+export {updatingUser, fetchingEmployee, fetchingProjects}
