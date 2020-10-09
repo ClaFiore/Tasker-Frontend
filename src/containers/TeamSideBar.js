@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './TeamMemberViewCont.css'
@@ -11,7 +11,7 @@ console.log(props)
     return(
         <div className='sidebar-div'>
             <div className='image-div'>
-                <img className='photo-img' src={props.current_user.employee.photo}/>
+                {/* <img className='photo-img' src={props.current_user.employee.photo}/> */}
             </div>
             <div className='profile-info'>
                 <h3>{props.current_user.employee.first_name}</h3>

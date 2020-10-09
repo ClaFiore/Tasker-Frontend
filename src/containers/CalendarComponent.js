@@ -3,8 +3,8 @@ import React from 'react'
 // import dayGridPlugin from '@fullcalendar/daygrid';
 // import timeGridPlugin from '@fullcalendar/timegrid';
 // import listPlugin from '@fullcalendar/list';
-import {connect} from 'react-redux'
-import { useHistory } from "react-router-dom";
+// import {connect} from 'react-redux'
+// import { useHistory } from "react-router-dom";
 import './TeamMemberViewCont.css'
 // import css from 'file.css';
 

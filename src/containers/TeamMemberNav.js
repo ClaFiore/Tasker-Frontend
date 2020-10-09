@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import './TeamMemberViewCont.css'
 
 const TeamMemberNav = props => {

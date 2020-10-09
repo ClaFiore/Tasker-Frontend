@@ -1,12 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
+// import { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
-import { useHistory } from "react-router-dom";
-import { creatingToken } from '../actions'
-import { browserHistory } from 'react-router'
-
+// import { useHistory } from "react-router-dom";
+// import { browserHistory } from 'react-router'
+import './login.css'
 // const URL = 'http://localhost:3000/api/v1/'
 
 const Login = props => {
@@ -27,6 +26,7 @@ const Login = props => {
             if (employeeInfo.error){
                 alert(employeeInfo.error)}
             else{
+            props.add_current_user(employeeInfo)
             localStorage.token = employeeInfo.token 
             props.logged_in(true)
             goToDashboard()
@@ -35,14 +35,15 @@ const Login = props => {
     }
     
     const goToDashboard = () => {
-            props.history.push('/dashboard')
+        props.history.push('/dashboard')
         }
     
 
     
     return(
-        <Form onSubmit={(e) => login(e)}>
-            <h1>Welcome to Takser!</h1>
+        <div className='loginForm'>
+        <Form style={{width: '50%'}} onSubmit={(e) => login(e)}>
+            <h1>Please login</h1>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" name='email'/>
@@ -55,6 +56,7 @@ const Login = props => {
                 Submit
             </Button>
         </Form>
+        </div>
     )
     
 }
@@ -66,6 +68,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        add_current_user: ((employeeInfo) => dispatch({type: 'add_current_user', payload: employeeInfo})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
     }
 }
