@@ -18,10 +18,10 @@ const Profile = props => {
     const [photo, setPhoto] = React.useState(props.employee.photo)
     
     
-    const updateUser = () => {
-        let token = props.token
+    const updateUser = (e) => {
+        e.preventDefault()
+        let id = props.employee.id
         let employee = { 
-            id: props.employee.id,
             first_name,
             last_name,
             address,
@@ -29,14 +29,14 @@ const Profile = props => {
             email,
             photo
             }
-        props.updatingUser(employee, token)
+        props.updatingUser(employee, id)
     }
     
     
     return(
         <div className='profile-container-div'>
             Hello {props.employee.first_name}!
-            <Form style={{'margin-top': '20px'}} onSubmit={() => updateUser()}>
+            <Form style={{'marginTop': '20px'}} onSubmit={(e) => updateUser(e)}>
                 <Form.Row>
                     <Col>
                         <Form.Label>First Name</Form.Label>
@@ -105,7 +105,7 @@ const mapStateToProps = state => {
         employee: state.employeeReducer.current_user.employee,
         team: state.employeeReducer.current_user.team,
         managed_team: state.employeeReducer.current_user.managed_team,
-        token: state.employeeReducer.current_user.token
+        token: state.loginReducer.token
     }
 }
 

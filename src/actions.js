@@ -39,22 +39,26 @@ function fetchingProjects(teamId){
     }
 }
 
-function updatedUser(updatedUser){
+function updatedUser(updatedUserInfo){
     return {
-        type: 'add_current_user', payload: updatedUser}
+        type: 'add_current_user', payload: updatedUserInfo}
 }
 
-function updatingUser(employee, token){
+function updatingUser(employee, id){
     let configObj = {method: 'PATCH', 
-    headers: {'Content-Type': 'application/json', Accept: 'application/json', 'Authorization': `Bearer ${token}`},
-    body: JSON.stringify({employee})
+    headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    body: JSON.stringify(employee)
     }
-    
     return (dispatch) => {
-        fetch(URL + 'employees/employee', configObj)
+        fetch(URL + 'employees/' + id, configObj)
         .then(res => res.json())
-        .then(updatedUser => {
-            dispatch(updatedUser(updatedUser))})
+        .then(updatedUserInfo => {
+            if (updatedUserInfo.error){
+                alert('oops something went wrong')
+            }else{
+            alert('Profile updated!')
+            dispatch(updatedUser(updatedUserInfo))}
+        })
     }
 }
 

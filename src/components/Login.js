@@ -29,6 +29,7 @@ const Login = props => {
             localStorage.token = employeeInfo.token
             localStorage.team_id = employeeInfo.employee.team_id 
             props.logged_in(true)
+            props.add_token(employeeInfo.token)
         }
         })
     }
@@ -71,6 +72,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         add_current_user: ((employeeInfo) => dispatch({type: 'add_current_user', payload: employeeInfo})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
+        add_token: ((tok) => dispatch({type: "add_token", payload: tok}))
     }
 }
 
