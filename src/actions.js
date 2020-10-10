@@ -21,7 +21,14 @@ function fetchingEmployee(){
 
 function fetchedProjects(teamprojects){
     return {
-        type: 'all_projects', payload: teamprojects}
+        type: 'all_projects', payload: teamprojects
+    }
+}
+
+function filteredProjects(teamprojects){
+    return{
+        type: 'filtered_projects', payload: teamprojects
+    }
 }
 
 function fetchingProjects(teamId){
@@ -33,6 +40,7 @@ function fetchingProjects(teamId){
         .then(res => res.json())
         .then(allProjects => {
             let teamprojects = allProjects.filter(project => project.team_id === teamId)
+            dispatch(filteredProjects(teamprojects))
             dispatch(fetchedProjects(teamprojects))
         })
         

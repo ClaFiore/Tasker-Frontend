@@ -15,7 +15,7 @@ const ProjectDetails = (props) => {
     
     return (
       <>
-        <Button variant="primary" onClick={handleShow}>
+        <Button size='sm' variant="primary" onClick={handleShow}>
           View Project Details
         </Button>
   

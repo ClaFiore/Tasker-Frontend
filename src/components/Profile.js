@@ -15,7 +15,7 @@ const Profile = props => {
     const [address, setAddress] = React.useState(props.employee.address)
     const [phone, setPhone] = React.useState(props.employee.phone)
     const [email, setEmail] = React.useState(props.employee.email)
-    const [photo, setPhoto] = React.useState(props.employee.photo)
+    const [dob, setDob] = React.useState(props.employee.dob)
     
     
     const updateUser = (e) => {
@@ -27,7 +27,7 @@ const Profile = props => {
             address,
             phone,
             email,
-            photo
+            dob
             }
         props.updatingUser(employee, id)
     }
@@ -61,8 +61,8 @@ const Profile = props => {
                 <br></br>
                 <Form.Row>
                     <Col>
-                        <Form.Label>Photo</Form.Label>
-                        <Form.Control size="sm" value={photo} onChange={(e) => setPhone(e.target.value)}/>
+                        <Form.Label>Date of Birth</Form.Label>
+                        <Form.Control size="sm" value={dob} onChange={(e) => setDob(e.target.value)}/>
                     </Col>
                     <Col>
                         <Form.Label>Address</Form.Label>

@@ -23,7 +23,19 @@ const TeamMemberNav = props => {
                 props.changeActivity(value)
             break
         }
-        
+    }
+
+    
+
+    const filterProjects = value => {
+        if (value !== 'all'){
+        let all_projects = props.projects
+        let filtered = all_projects.filter(p => p.status === value)
+        props.filterProjects(filtered)}
+        else{
+            let all_projects = props.projects
+            props.filterProjects(all_projects)
+        }
     }
 
     if (!props.logged){
@@ -34,14 +46,23 @@ const TeamMemberNav = props => {
 
     return(
         <div className='navbar'>
-                            <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
-                                <option selected disabled>Menu</option>
-                                <option value='profile'>View My Profile</option>
-                                <option value='calendar'>View My Calendar</option>
-                                <option value='projects'>View Team's Projects</option>
-                                {props.managed_team ? <option value='switch'>Switch Team</option> : null}
-                                <option value='logout'>Logout</option>
-                            </select>
+
+            <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
+                <option selected disabled>Menu</option>
+                <option value='profile'>View My Profile</option>
+                <option value='calendar'>View My Calendar</option>
+                <option value='projects'>View Team's Projects</option>
+                {props.managed_team ? <option value='switch'>Switch Team</option> : null}
+                <option value='logout'>Logout</option>
+            </select>
+            {props.activity === 'projects' ? <div>
+                <select className='menu' onChange={(e) => filterProjects(e.target.value)}>
+                    <option disabled selected>Filter Projects by</option>
+                    <option value='completed'>Completed</option>
+                    <option value='in progress'>In Progress</option>
+                    <option value='all'>All</option>
+                </select>
+            </div> : null}
         </div>
     )
 }
@@ -49,12 +70,16 @@ const TeamMemberNav = props => {
 
 const mapStateToProps = (state) => {
     return {logged: state.loginReducer.logged_in,
-            managed_team: state.employeeReducer.current_user.managed_team}
+            activity: state.dashboardReducer.activity,
+            managed_team: state.employeeReducer.current_user.managed_team,
+            projects: state.dashboardReducer.projects,
+            filtered_projects: state.dashboardReducer.filtered_projects}
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
+        filterProjects: ((filtered) => dispatch({type: 'filtered_projects', payload: filtered})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
         user_logout: () => dispatch({type: 'USER_LOGOUT'})
     }

@@ -5,9 +5,11 @@ import {connect} from 'react-redux'
 import ProjectDetails from './ProjectDetails'
 
 const ProjectCard = props => {
-    const {title, content, status} = props.project
+    const {title, content, status, due_by} = props.project
+    let due_date = due_by.split('T')[0]
     
     const [modal, setModal] = useState(false)
+
 
 
     return(
@@ -18,6 +20,9 @@ const ProjectCard = props => {
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
                     Project status: {status}
+                    </Card.Text>
+                    <Card.Text>
+                    Due by: {due_date}
                     </Card.Text>
                     <ProjectDetails project={props.project}/>
                 </Card.Body>

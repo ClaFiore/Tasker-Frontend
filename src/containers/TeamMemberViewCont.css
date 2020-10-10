@@ -38,6 +38,13 @@
     /* z-index: 1; */
 }
 
+.project-container-div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80vw;
+}
+
 
 .navbar {
     display: flex;
