@@ -77,6 +77,11 @@
     padding: 20px;
 }
 
+.create-project-btn{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
 .manager-team-member-view-div{
     margin-top: 30px;
     margin-left:20px;

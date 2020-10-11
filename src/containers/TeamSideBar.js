@@ -2,7 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './TeamMemberViewCont.css'
-
+import Button from 'react-bootstrap/Button';
+import AddProject from '../components/AddProject'
 
 const TeamSideBar = props => {
 
@@ -22,6 +23,12 @@ const TeamSideBar = props => {
                 <p>{props.employee.title}</p>
                 <p>Department: {props.employee.department}</p>
             </div>
+            {props.view === 'manager' && props.activity === 'projects' ?
+                <div className='create-project-btn'>
+                <AddProject/>
+                </div>
+                :
+                null}
         </div>
 
     )
@@ -32,7 +39,8 @@ const mapStateToProps = (state) => {
         employee: state.employeeReducer.current_user.employee,
         team: state.employeeReducer.current_user.team,
         view: state.dashboardReducer.view,
-        managed_team: state.employeeReducer.current_user.managed_team
+        managed_team: state.employeeReducer.current_user.managed_team,
+        activity: state.dashboardReducer.activity
     }
 }
 

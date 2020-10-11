@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import {connect} from 'react-redux'
 import ProjectDetails from './ProjectDetails'
+import EditProject from './EditProject'
 
 const ProjectCard = props => {
     const {title, content, status, due_by} = props.project
@@ -25,6 +26,10 @@ const ProjectCard = props => {
                     Due by: {due_date}
                     </Card.Text>
                     <ProjectDetails project={props.project}/>
+                    {props.view === 'manager' && props.activity === 'projects' ?
+                    <EditProject project={props.project}/>
+                    :
+                    null}
                 </Card.Body>
             </Card>
             </div>
@@ -34,12 +39,13 @@ const ProjectCard = props => {
 }
 
 
-// const mapStateToProps = state => {
-//     return {project: state.dashboardReducer.projects}
-// }
+const mapStateToProps = state => {
+    return {view: state.dashboardReducer.view,
+        activity: state.dashboardReducer.activity}
+}
 
 // const mapDispatchToProps = dispatch => {
 //     changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
 // }
 
-export default ProjectCard
+export default connect(mapStateToProps)(ProjectCard)

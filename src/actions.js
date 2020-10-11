@@ -1,3 +1,5 @@
+import ProjectDetails from "./components/ProjectDetails"
+
 const URL = 'http://localhost:3000/api/v1/'
 
 function fetchedCurrent_Employee(current_employee) {
@@ -48,6 +50,25 @@ function fetchingProjects(teamId){
     }
 }
 
+function addedProject(newProject){
+    return {
+        type: 'add_project', payload: newProject
+    }
+}
+
+function addingNewProject(configObj){
+    return (dispatch) => {
+        fetch(URL + 'projects', configObj)
+        .then(res => res.json())
+        .then(newProject => {
+            dispatch(addedProject(newProject))
+        })
+        
+    }
+}
+
+
+
 function updatedUser(updatedUserInfo){
     return {
         type: 'add_current_user', payload: updatedUserInfo}
@@ -73,4 +94,4 @@ function updatingUser(employee, id){
 
 
 
-export {updatingUser, fetchingEmployee, fetchingProjects}
+export {addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
