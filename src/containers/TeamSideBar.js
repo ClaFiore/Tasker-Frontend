@@ -8,27 +8,32 @@ const TeamSideBar = props => {
 
     return(
         <div className='sidebar-div'>
-            <div className='image-div'>
-                {/* <img className='photo-img' src={props.current_user.employee.photo}/> */}
-            </div>
+                <div className='manager-team-member-view-div'>
+                    <h4>{props.view.toUpperCase()}</h4>
+                    {props.view === 'manager' ? 
+                        <p>'{props.managed_team.name}'</p>
+                        :
+                        <p>'{props.team.name}'</p>
+                    }
+                </div>
             <div className='profile-info'>
-                <h3>{props.current_user.employee.first_name}</h3>
-                <h4>{props.current_user.employee.last_name}</h4>
-                <h5>{props.current_user.employee.title}</h5>
-                <h5>{props.current_user.employee.department}</h5>
-                <h5>{props.current_user.team.name}</h5>
+                <h4>{props.employee.first_name}</h4>
+                <p>{props.employee.last_name}</p>
+                <p>{props.employee.title}</p>
+                <p>Department: {props.employee.department}</p>
             </div>
-            {/* <select onChange={(e) => props.changeActivity(e.target.value)}>
-                <option selected disabled>Team Projects</option>
-                <option value='projects'>View All Projects</option>
-            </select> */}
         </div>
 
     )
 }
 
 const mapStateToProps = (state) => {
-    return state.employeeReducer
+    return {
+        employee: state.employeeReducer.current_user.employee,
+        team: state.employeeReducer.current_user.team,
+        view: state.dashboardReducer.view,
+        managed_team: state.employeeReducer.current_user.managed_team
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

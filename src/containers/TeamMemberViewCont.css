@@ -24,7 +24,6 @@
     width: 20vw;
     flex-basis: auto;
     background-color: #8FD5FF;
-    /* z-index: 1; */
 }
 
 .calendar-div-container{
@@ -69,23 +68,17 @@
 
 
 /* SIDEBAR */
-.image-div{
-    display: flex;
-    justify-self: start;
-    justify-content: center;
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    border:2px black;
-    margin-left: 30px;
-}
-.photo-img{
-    width: 100px;
-    height: 100px;
-}
 .profile-info{
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 20px;
+}
+
+.manager-team-member-view-div{
+    margin-top: 30px;
+    margin-left:20px;
+    color: #0F61D3;
 }

@@ -1,4 +1,4 @@
-let initialState = {view: 'team_member',
+let initialState = {view: 'team member',
                     activity: 'calendar',
                     projects: [],
                     filtered_projects: []}
@@ -6,6 +6,9 @@ let initialState = {view: 'team_member',
 
 let dashboardReducer = (state = initialState, action) => {
     switch(action.type){
+        case 'change_view':
+                    return{...state,
+                            view: action.payload}
         case 'changeActivity':
                     return {...state,
                             activity: action.payload}

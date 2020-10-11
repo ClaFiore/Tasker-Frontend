@@ -5,6 +5,11 @@ import './TeamMemberViewCont.css'
 
 const TeamMemberNav = props => {
 
+    if (!props.logged){
+        return(
+            <Redirect to='/' />
+        )
+    }
 
     const handleMenu = (value) => {
         switch(value){
@@ -22,11 +27,16 @@ const TeamMemberNav = props => {
             case 'profile':
                 props.changeActivity(value)
             break
+            case 'switchTeam':
+                if (props.view === 'team member')
+                props.change_view('manager')
+                else
+                props.change_view('team member')
+                break
         }
     }
 
     
-
     const filterProjects = value => {
         if (value !== 'all'){
         let all_projects = props.projects
@@ -38,11 +48,7 @@ const TeamMemberNav = props => {
         }
     }
 
-    if (!props.logged){
-        return(
-            <Redirect to='/' />
-        )
-    }
+    
 
     return(
         <div className='navbar'>
@@ -52,7 +58,7 @@ const TeamMemberNav = props => {
                 <option value='profile'>View My Profile</option>
                 <option value='calendar'>View My Calendar</option>
                 <option value='projects'>View Team's Projects</option>
-                {props.managed_team ? <option value='switch'>Switch Team</option> : null}
+                {props.managed_team ? <option value='switchTeam'>Switch Team</option> : null}
                 <option value='logout'>Logout</option>
             </select>
             {props.activity === 'projects' ? <div>
@@ -71,6 +77,7 @@ const TeamMemberNav = props => {
 const mapStateToProps = (state) => {
     return {logged: state.loginReducer.logged_in,
             activity: state.dashboardReducer.activity,
+            view: state.dashboardReducer.view,
             managed_team: state.employeeReducer.current_user.managed_team,
             projects: state.dashboardReducer.projects,
             filtered_projects: state.dashboardReducer.filtered_projects}
@@ -81,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
         filterProjects: ((filtered) => dispatch({type: 'filtered_projects', payload: filtered})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
+        change_view: ((value) => dispatch({type: "change_view", payload: value})),
         user_logout: () => dispatch({type: 'USER_LOGOUT'})
     }
 }

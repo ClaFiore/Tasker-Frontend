@@ -7,13 +7,9 @@ import { fetchingEmployee } from '../actions'
 
 const Dashboard = props => {
 
-    // useEffect(() => {
-    //     props.fetchingEmployee()
-    // },[])
-
     return(
         <div>
-        {props.view === 'team_member' ? <TeamMemberViewContainer /> : <ManagerViewContainer />}
+         <TeamMemberViewContainer /> 
         </div>
     )
 }

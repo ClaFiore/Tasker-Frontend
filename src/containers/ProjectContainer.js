@@ -10,10 +10,6 @@ const ProjectContainer = props => {
         props.fetchingProjects(props.team_id)
     }, [])
 
-    
-    
-    
-
     return(
         
         <div className='project-container-div'>
@@ -22,6 +18,9 @@ const ProjectContainer = props => {
         
     )
 }
+
+
+
 
 const mapStateToProps = state => {
     return {team_id: state.employeeReducer.current_user.employee.team_id,
