@@ -39,6 +39,7 @@ function fetchingProjects(teamId){
         fetch(URL + 'projects', configObj)
         .then(res => res.json())
         .then(allProjects => {
+            
             let teamprojects = allProjects.filter(project => project.team_id === teamId)
             dispatch(filteredProjects(teamprojects))
             dispatch(fetchedProjects(teamprojects))

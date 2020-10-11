@@ -7,7 +7,10 @@ import ProjectCard from '../components/ProjectCard'
 const ProjectContainer = props => {
 
     useEffect(()=>{
+        if (props.view === 'team member')
         props.fetchingProjects(props.team_id)
+        else
+        props.fetchingProjects(props.managed_team_id)
     }, [])
 
     return(
@@ -24,7 +27,9 @@ const ProjectContainer = props => {
 
 const mapStateToProps = state => {
     return {team_id: state.employeeReducer.current_user.employee.team_id,
-            projects: state.dashboardReducer.filtered_projects}
+            managed_team_id: state.employeeReducer.current_user.employee.managed_team_id,
+            projects: state.dashboardReducer.filtered_projects,
+            view: state.dashboardReducer.view}
 }
 
 const mapDispatchToProps = dispatch => {

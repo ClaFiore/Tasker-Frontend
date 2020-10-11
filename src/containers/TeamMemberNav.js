@@ -32,6 +32,7 @@ const TeamMemberNav = props => {
                 props.change_view('manager')
                 else
                 props.change_view('team member')
+                props.changeActivity('calendar')
                 break
         }
     }
@@ -55,8 +56,8 @@ const TeamMemberNav = props => {
 
             <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
                 <option selected disabled>Menu</option>
-                <option value='profile'>View My Profile</option>
                 <option value='calendar'>View My Calendar</option>
+                <option value='profile'>View My Profile</option>
                 <option value='projects'>View Team's Projects</option>
                 {props.managed_team ? <option value='switchTeam'>Switch Team</option> : null}
                 <option value='logout'>Logout</option>
