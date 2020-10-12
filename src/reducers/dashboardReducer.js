@@ -1,7 +1,9 @@
 let initialState = {view: 'team member',
                     activity: 'calendar',
                     projects: [],
-                    filtered_projects: []}
+                    filtered_projects: [],
+                    tasks: [],
+                    filtered_tasks: [],}
 
 
 let dashboardReducer = (state = initialState, action) => {
@@ -54,6 +56,11 @@ let dashboardReducer = (state = initialState, action) => {
                 return {...state, 
                         filtered_projects: state.filtered_projects.filter(proj => proj.id !== action.payload),
                         projects: state.projects.filter(proj => proj.id !== action.payload)
+                }
+        case 'add_task':
+                return{...state,
+                        tasks: [...state.tasks, action.payload],
+                        filtered_tasks: [...state.filtered_tasks, action.payload]
                 }
         default:
             return state

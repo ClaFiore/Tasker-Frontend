@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from "react-router-dom";
 import './TeamMemberViewCont.css'
+import CreateTask from '../components/CreateTask'
 
 const TeamMemberNav = props => {
 
@@ -53,7 +54,6 @@ const TeamMemberNav = props => {
 
     return(
         <div className='navbar'>
-
             <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
                 <option selected disabled>Menu</option>
                 <option value='calendar'>View My Calendar</option>
@@ -62,6 +62,7 @@ const TeamMemberNav = props => {
                 {props.managed_team ? <option value='switchTeam'>Switch Team</option> : null}
                 <option value='logout'>Logout</option>
             </select>
+            {props.activity === 'calendar' ? <CreateTask /> : null}
             {props.activity === 'projects' ? <div>
                 <select className='menu' onChange={(e) => filterProjects(e.target.value)}>
                     <option disabled selected>Filter Projects by</option>

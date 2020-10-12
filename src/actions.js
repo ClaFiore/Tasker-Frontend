@@ -121,6 +121,20 @@ function updatingUser(employee, id){
     }
 }
 
+function addedTask(newTask){
+    return {
+        type: 'add_task', payload: newTask
+    }
+}
 
+function addingTask(configObj){
+    return (dispatch) => {
+        fetch(URL + 'tasks', configObj)
+        .then(res => res.json())
+        .then(newTask => {
+            dispatch(addedTask(newTask))
+        })
+    }
+}
 
-export {deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+export {addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
