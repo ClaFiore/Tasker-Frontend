@@ -22,6 +22,39 @@ let dashboardReducer = (state = initialState, action) => {
                         return {...state,
                                 projects: [...state.projects, action.payload],
                                 filtered_projects: [...state.filtered_projects, action.payload]}
+        case 'update_project':
+                return {...state, 
+                        filtered_projects: state.filtered_projects.map(proj => {
+                                if (proj.id === action.payload.id){
+                                return {
+                                        ...proj,
+                                        title: action.payload.title,
+                                        content: action.payload.content,
+                                        status: action.payload.status,
+                                        due_by: action.payload.due_by
+                                }
+                                }else{
+                                        return proj
+                                }}),
+                        projects: state.projects.map(proj => {
+                                if (proj.id === action.payload.id){
+                                return {
+                                        ...proj,
+                                        title: action.payload.title,
+                                        content: action.payload.content,
+                                        status: action.payload.status,
+                                        due_by: action.payload.due_by
+                                }
+                        }else{
+                                return proj
+                        }
+                        })
+                }
+        case 'deleted_project':
+                return {...state, 
+                        filtered_projects: state.filtered_projects.filter(proj => proj.id !== action.payload),
+                        projects: state.projects.filter(proj => proj.id !== action.payload)
+                }
         default:
             return state
     }       

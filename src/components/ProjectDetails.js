@@ -15,9 +15,9 @@ const ProjectDetails = (props) => {
     
     return (
       <>
-        <Button size='sm' variant="primary" onClick={handleShow}>
-          View Project Details
-        </Button>
+        <h4 id='project-card-title' onClick={handleShow}>
+          {props.project.title}
+        </h4>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

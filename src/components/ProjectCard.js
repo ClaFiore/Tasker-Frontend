@@ -4,6 +4,8 @@ import Card from 'react-bootstrap/Card';
 import {connect} from 'react-redux'
 import ProjectDetails from './ProjectDetails'
 import EditProject from './EditProject'
+import {updatingProject} from '../actions'
+import {deletingProject} from '../actions'
 
 const ProjectCard = props => {
     const {title, content, status, due_by} = props.project
@@ -11,23 +13,38 @@ const ProjectCard = props => {
     
     const [modal, setModal] = useState(false)
 
+    const completingProject = () => {
+        let configObj = {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
+            body: JSON.stringify({status: 'completed'})
+          }
+        let projectId = props.project.id
+        props.updatingProject(configObj, projectId)
+    }
 
+    const deletingProject = () => {
+        let projectId = props.project.id
+        props.deletingProject(projectId)
+    }
 
     return(
         <div>
             <div>
             <Card style={{ width: '18rem', margin: '20px' }}>
                 <Card.Body>
-                    <Card.Title>{title}</Card.Title>
+                    <Card.Title><ProjectDetails project={props.project}/></Card.Title>
                     <Card.Text>
                     Project status: {status}
                     </Card.Text>
                     <Card.Text>
                     Due by: {due_date}
                     </Card.Text>
-                    <ProjectDetails project={props.project}/>
-                    {props.view === 'manager' && props.activity === 'projects' ?
-                    <EditProject project={props.project}/>
+                    {props.view === 'manager' && props.activity === 'projects' && props.project.status === 'in progress' ?
+                    <div><EditProject project={props.project}/>
+                    <Button onClick={()=> completingProject()} style={{'marginLeft': '10px'}} variant="success" size='sm'>Done</Button>
+                    <Button onClick={()=> deletingProject()} style={{'marginLeft': '10px'}} variant="danger" size='sm'> X </Button>
+                    </div>
                     :
                     null}
                 </Card.Body>
@@ -44,8 +61,11 @@ const mapStateToProps = state => {
         activity: state.dashboardReducer.activity}
 }
 
-// const mapDispatchToProps = dispatch => {
-//     changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
-// }
+const mapDispatchToProps = dispatch => {
+    return{
+        updatingProject: (configObj, projectId) => {dispatch(updatingProject(configObj, projectId))},
+        deletingProject: (projectId) => {dispatch(deletingProject(projectId))}
+    }
+}
 
-export default connect(mapStateToProps)(ProjectCard)
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectCard)

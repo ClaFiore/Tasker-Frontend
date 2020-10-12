@@ -67,7 +67,36 @@ function addingNewProject(configObj){
     }
 }
 
+function updatedProject(editedProject){
+    return{
+        type: 'update_project', payload: editedProject
+    }
+}
 
+function updatingProject(configObj, projectId){
+    return (dispatch) => {
+        fetch(URL + 'projects/' + projectId, configObj)
+        .then(res => res.json())
+        .then(editedProject => {
+            dispatch(updatedProject(editedProject))
+        })
+    }
+}
+
+function deletedProject(projectId){
+    return{
+        type: 'deleted_project', payload: projectId
+    }
+}
+
+function deletingProject(projectId){
+    return (dispatch) => {
+        fetch (URL + 'projects/' + projectId, {method: 'DELETE', headers: {Authorization: `Bearer ${localStorage.token}`}})
+        .then(() => {
+            dispatch(deletedProject(projectId))
+        })
+    }
+}
 
 function updatedUser(updatedUserInfo){
     return {
@@ -94,4 +123,4 @@ function updatingUser(employee, id){
 
 
 
-export {addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+export {deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
