@@ -1,17 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { useEffect } from 'react'
-import {fetchingProjects} from '../actions'
+import {fetchingProjects, fetchingTasks} from '../actions'
 import TeamMemberViewContainer from './TeamMemberViewContainer'
-import ManagerViewContainer from './ManagerViewContainer'
-import { fetchingEmployee } from '../actions'
+
+
 
 const Dashboard = props => {
 
 
     useEffect(()=>{
-        if (props.view === 'team member')
+        if (props.view === 'team member'){
         props.fetchingProjects(props.team_id)
+        props.fetchingTasks(props.current_employee.employee.id)}
         else
         props.fetchingProjects(props.managed_team_id)
     }, [])
@@ -30,12 +31,14 @@ const mapStateToProps = (state) => {
     return {team_id: state.employeeReducer.current_user.employee.team_id,
         managed_team_id: state.employeeReducer.current_user.employee.managed_team_id,
         projects: state.dashboardReducer.filtered_projects,
-        view: state.dashboardReducer.view}
+        view: state.dashboardReducer.view,
+        current_employee: state.employeeReducer.current_user}
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        fetchingProjects: (teamID) => {dispatch(fetchingProjects(teamID))}
+        fetchingProjects: (teamID) => {dispatch(fetchingProjects(teamID))},
+        fetchingTasks: (current_user_id) => {dispatch(fetchingTasks(current_user_id))}
      }
 }
 

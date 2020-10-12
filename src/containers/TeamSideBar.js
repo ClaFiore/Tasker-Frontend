@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './TeamMemberViewCont.css'
-import Button from 'react-bootstrap/Button';
+import CreateTask from '../components/CreateTask'
 import AddProject from '../components/AddProject'
 
 const TeamSideBar = props => {
@@ -23,6 +23,7 @@ const TeamSideBar = props => {
                 <p>{props.employee.title}</p>
                 <p>Department: {props.employee.department}</p>
             </div>
+            {props.activity === 'calendar' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
             {props.view === 'manager' && props.activity === 'projects' ?
                 <div className='create-project-btn'>
                 <AddProject/>

@@ -137,4 +137,25 @@ function addingTask(configObj){
     }
 }
 
-export {addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function myfetchedTasks(myTasks){
+    return{
+        type: 'all_tasks', payload: myTasks
+    }
+}
+
+function fetchingTasks(current_employee_id){
+    let configObj = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`}
+    }
+    return (dispatch) => {
+        fetch(URL + 'tasks/', configObj)
+        .then(res => res.json())
+        .then(allTasks => {
+            let myTasks = allTasks.filter(task => task.team_member_id === current_employee_id)
+            dispatch(myfetchedTasks(myTasks))
+        })
+    }
+}
+
+export {fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
