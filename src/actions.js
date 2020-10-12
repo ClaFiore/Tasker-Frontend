@@ -115,7 +115,6 @@ function updatingUser(employee, id){
             if (updatedUserInfo.error){
                 alert('oops something went wrong')
             }else{
-            alert('Profile updated!')
             dispatch(updatedUser(updatedUserInfo))}
         })
     }
