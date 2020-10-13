@@ -1,20 +1,14 @@
 import React from 'react'
-<<<<<<< HEAD
-
-import './TeamMemberViewCont.css'
-
-
-=======
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import listPlugin from '@fullcalendar/list';
 import {connect} from 'react-redux'
 import './TeamMemberViewCont.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import "@fullcalendar/core/main.css";  
 // import "@fullcalendar/daygrid/main.css";
->>>>>>> calendar-api
 
 const CalendarComponent = props => {
 
@@ -34,19 +28,19 @@ const CalendarComponent = props => {
               })
       }
 
-
+    
     return(
         <div className='calendar-div-container'>
             <FullCalendar 
                     initialView='dayGridMonth'
-                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
                     headerToolbar={{
-                        left: 'prev,next',
+                        left: 'today,prev,next',
                         center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
                       }}
                     editable={true}
-                    weekends= {false}
+                    weekends= {true}
                     // eventDrop={this.handleEventDrop}
                     eventClick={null}
                     events={formatEvents()}

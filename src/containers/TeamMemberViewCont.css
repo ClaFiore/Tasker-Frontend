@@ -28,13 +28,13 @@
 
 .calendar-div-container{
     width: 70vw;
-    height: 80vh;
+    height: 90vh;
     border: 2px solid #0F61D4;
-    /* overflow: auto; */
-    display: flex;
+    overflow: auto;
+    display: inline-block;
     justify-content: center;
     align-self: center;
-    margin-top: 5%;
+    margin-top: 10px;
     /* z-index: 1; */
 }
 
