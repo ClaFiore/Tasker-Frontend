@@ -13,16 +13,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const CalendarComponent = props => {
 
     const formatEvents = () => {
-        return props.projects.map(project => {
-                  const {title, due_by, content} = project
-      
-                //   let startTime = new Date(start)
-                  let endTime = new Date(due_by)
+        return props.tasks.map(task => {
+                  const {title, start, end, content} = task
+                  let startTime = new Date(start)
+                  let endTime = new Date(end)
+                  console.log(startTime)
       
                   return {
                     title, 
-                    start: endTime,
-                   //end: endTime
+                    start: startTime,
+                    end: endTime,
                     extendedProps: {...content}
                   }
               })
@@ -32,6 +32,7 @@ const CalendarComponent = props => {
     return(
         <div className='calendar-div-container'>
             <FullCalendar 
+                    timeZone= 'UTC'
                     initialView='dayGridMonth'
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
                     headerToolbar={{
@@ -41,7 +42,6 @@ const CalendarComponent = props => {
                       }}
                     editable={true}
                     weekends= {true}
-                    // eventDrop={this.handleEventDrop}
                     eventClick={null}
                     events={formatEvents()}
                 />
@@ -53,6 +53,7 @@ const CalendarComponent = props => {
 const mapStateToProps = (state) => {
     return {
         projects: state.dashboardReducer.projects,
+        tasks: state.dashboardReducer.tasks,
     }
 }
 

@@ -19,20 +19,32 @@ const CreateTask = (props) => {
 
     const creatingTask = (e) => {
         e.preventDefault()
+        
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+
+        today = mm + '-' + dd + '-' + yyyy
+
+        let start = today + ' ' + e.target.start.value + ' ' + e.target.time_start.value
+        let end = today + ' ' + e.target.end.value + ' ' + e.target.time_end.value
+
         let configObj = {
             method: 'POST',
             headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
             body: JSON.stringify({
                 title: e.target.title.value,
                 content: e.target.content.value,
-                start: e.target.start.value,
-                end: e.target.end.value,
+                start: start,
+                end: end,
                 project_id: e.target.project_id.value,
                 team_member_id: props.current_user.employee.id,
                 priority: e.target.priority.value,
                 status: 'in progress'
             })
         }
+        console.log(configObj.body)
         props.addingTask(configObj)
         handleClose()
     }
@@ -60,21 +72,30 @@ const CreateTask = (props) => {
                         <Form.Control name="content" placeholder="Enter content" />
                     </Col>
                     </Form.Row>
-                    
+                    <br></br>
                     <Form.Row>
+                        <Form.Label>Start Time</Form.Label>
                     <Col>
-                        <Form.Label>Start</Form.Label>
-                        <Form.Control name="start" placeholder="Enter start date" />
-                        <Form.Text className="text-muted">
-                            Please insert date as yyyy-mm-dd
-                        </Form.Text>
+                        <Form.Control name="start" placeholder="hh:mm" />
                     </Col>
                     <Col>
-                        <Form.Label>End</Form.Label>
-                        <Form.Control name="end" placeholder="Enter end date" />
-                        <Form.Text className="text-muted">
-                            Please insert date as yyyy-mm-dd
-                        </Form.Text>
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check inline name='time_start' type="radio" label="AM" value='AM'/>
+                        <Form.Check inline name='time_start' type="radio" label="PM" value='PM'/>
+                    </Form.Group>
+                    </Col>
+                    </Form.Row>
+                    <br></br>
+                    <Form.Row>
+                        <Form.Label>End Time</Form.Label>
+                    <Col>
+                        <Form.Control name="end" placeholder="hh:mm" />
+                    </Col>
+                    <Col>
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check inline name='time_end' type="radio" label="AM" value='AM'/>
+                        <Form.Check inline name='time_end' type="radio" label="PM" value='PM'/>
+                    </Form.Group>
                     </Col>
                     </Form.Row>
                     <br></br>
@@ -83,11 +104,10 @@ const CreateTask = (props) => {
                         {props.projects.map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
                     </select>
                     <br></br>
-                    <Form.Label>Priority</Form.Label>
                     <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check inline name='priority' type="radio" label="High" value='high'/>
-                        <Form.Check inline name='priority' type="radio" label="Medium" value='medium'/>
-                        <Form.Check inline name='priority' type="radio" label="Low" value='low'/>
+                        <Form.Check inline name='priority' type="radio" label="High Priority" value='high'/>
+                        <Form.Check inline name='priority' type="radio" label="Normal Priority" value='normal'/>
+                        <Form.Check inline name='priority' type="radio" label="Low Priority" value='low'/>
                     </Form.Group>
 
                     <Button size='sm' variant="success" type="submit">
