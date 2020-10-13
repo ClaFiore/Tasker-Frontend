@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from "react-router-dom";
+// import AddTask from '../components/AddTask';
 import './TeamMemberViewCont.css'
 
 
@@ -69,6 +70,7 @@ const TeamMemberNav = props => {
                     <option value='in progress'>In Progress</option>
                     <option value='all'>All</option>
                 </select>
+                {/* <AddTask /> */}
             </div> : null}
         </div>
     )
