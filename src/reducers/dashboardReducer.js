@@ -20,6 +20,9 @@ let dashboardReducer = (state = initialState, action) => {
         case 'filtered_projects':
                     return{...state,
                             filtered_projects: action.payload}
+        case 'filtered_tasks':
+                return  {...state,
+                        filtered_tasks: action.payload}
         case 'add_project':
                         return {...state,
                                 projects: [...state.projects, action.payload],

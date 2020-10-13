@@ -51,6 +51,17 @@ const TeamMemberNav = props => {
         }
     }
 
+    const filterTasks = value => {
+        if (value !== 'all'){
+        let all_tasks = props.tasks
+        let filtered = all_tasks.filter(t => t.priority === value)
+        props.filterTasks(filtered)}
+        else{
+            let all_tasks = props.tasks
+            props.filterTasks(all_tasks)
+        }
+    }
+
     
 
     return(
@@ -70,7 +81,15 @@ const TeamMemberNav = props => {
                     <option value='in progress'>In Progress</option>
                     <option value='all'>All</option>
                 </select>
-                {/* <AddTask /> */}
+            </div> : null}
+            {props.activity === 'calendar' ? <div>
+                <select className='menu' onChange={(e) => filterTasks(e.target.value)}>
+                    <option disabled selected>Filter Tasks by</option>
+                    <option value='high'>High Priority</option>
+                    <option value='normal'>Normal Priority</option>
+                    <option value='low'>Low Priority</option>
+                    <option value='all'>All</option>
+                </select>
             </div> : null}
         </div>
     )
@@ -83,13 +102,16 @@ const mapStateToProps = (state) => {
             view: state.dashboardReducer.view,
             managed_team: state.employeeReducer.current_user.managed_team,
             projects: state.dashboardReducer.projects,
-            filtered_projects: state.dashboardReducer.filtered_projects}
+            filtered_projects: state.dashboardReducer.filtered_projects,
+            tasks: state.dashboardReducer.tasks,
+            filtered_tasks: state.dashboardReducer.filtered_tasks}
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
         filterProjects: ((filtered) => dispatch({type: 'filtered_projects', payload: filtered})),
+        filterTasks: ((filtered) => dispatch({type: 'filtered_tasks', payload: filtered})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
         change_view: ((value) => dispatch({type: "change_view", payload: value})),
         user_logout: () => dispatch({type: 'USER_LOGOUT'})
