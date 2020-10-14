@@ -88,6 +88,17 @@ const CalendarComponent = props => {
         props.markingTaskStatus(id, configObj)
         handleClose()
     }
+
+    const markTaskAsInProgress = () => {
+        let id = taskId
+        let configObj = {
+            method: 'PATCH',
+            headers: {Authorization: `Bearer ${localStorage.token}`, 'Content-Type': 'application/json', Accept: 'application/json'},
+            body: JSON.stringify({status: 'in progress'})
+        }
+        props.markingTaskStatus(id, configObj)
+        handleClose()
+    }
     
     return(
         <div className='calendar-div-container'>
@@ -122,7 +133,7 @@ const CalendarComponent = props => {
                         <span className='display-task-modal-span'>Project: </span>{taskProject}
                     </Modal.Body>
                 <Modal.Footer>
-                        {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow'>&#x270d;</button>}
+                        {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow' onClick={() => markTaskAsInProgress()}>&#x270d;</button>}
                         <Button size='sm' variant="secondary" onClick={handleClose}>
                         Back
                         </Button>
