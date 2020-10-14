@@ -32,30 +32,30 @@ const CalendarComponent = props => {
                   let startTime = new Date(start)
                   let endTime = new Date(end)
                     if (status === 'in progress'){
-                  return {
-                    title, 
-                    id,
-                    start: startTime,
-                    end: endTime,
-                    content: content,
-                    borderColor: '#ffcc00', //overrides dot-coloring for background color, the border color is visible in day/week-view
-                    backgroundColor: '#ffcc00', // visible in week-view/day-view and as dot in month-view
-                    //textColor: 'black', //this changes color font in week-view/day-view
-                    extendedProps: {content, id, project_id}
-                  }
-                }else if (status === 'completed')
-                    return {
-                    id,
-                    title, 
-                    start: startTime,
-                    end: endTime,
-                    content: content,
-                    backgroundColor: 'green',
-                    borderColor: 'green',
-                    extendedProps: {content, id, project_id}
-                }
+                        return {
+                            title, 
+                            id,
+                            start: startTime,
+                            end: endTime,
+                            content: content,
+                            borderColor: '#ffcc00', //overrides dot-coloring for background color, the border color is visible in day/week-view
+                            backgroundColor: '#ffcc00', // visible in week-view/day-view and as dot in month-view
+                            //textColor: 'black', //this changes color font in week-view/day-view
+                            extendedProps: {content, id, project_id}
+                        }
+                    }else if (status === 'completed')
+                        return {
+                            id,
+                            title, 
+                            start: startTime,
+                            end: endTime,
+                            content: content,
+                            backgroundColor: 'green',
+                            borderColor: 'green',
+                            extendedProps: {content, id, project_id}
+                        }
         })
-      }
+    }
     
     const displayEvent = (e) => {
         let current_task = props.tasks.find(t => t.id === e.event._def.extendedProps.id)
@@ -172,6 +172,7 @@ const CalendarComponent = props => {
                     eventClick={(e) => displayEvent(e)}
                     dateClick = {(e) => console.log(e)}
                     eventDrop={(e) => dropEvent(e)}
+                    eventResize={(e)=> dropEvent(e)}
                     events={formatEvents()}
                 />
                <div>
