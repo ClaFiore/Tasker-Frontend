@@ -67,7 +67,7 @@ const CalendarComponent = props => {
         let project = props.projects.filter(p => p.id === current_task.project_id)
         let t = project[0].title
         setTaskProject(t)
-            
+        console.log(current_task.start)
         let taskStartDate = new Date(e.event._instance.range.start)
         let startTime = taskStartDate.toUTCString().split('G')[0]
         let taskEndDate = new Date(e.event._instance.range.end)
@@ -91,6 +91,7 @@ const CalendarComponent = props => {
 
     const markTaskAsInProgress = () => {
         let id = taskId
+        let current_task = props.tasks.find(t => t.id === id)
         let configObj = {
             method: 'PATCH',
             headers: {Authorization: `Bearer ${localStorage.token}`, 'Content-Type': 'application/json', Accept: 'application/json'},
@@ -100,6 +101,61 @@ const CalendarComponent = props => {
         handleClose()
     }
     
+    const dropEvent = (e) => {
+        let current_task = props.tasks.find(t => t.id === e.event._def.extendedProps.id)
+        let id = current_task.id
+
+        let rangeStart = e.event._instance.range.start
+        let dd = String(rangeStart.getDate()).padStart(2, '0')
+        let mm = String(rangeStart.getMonth() + 1).padStart(2, '0')
+        let yyyy = rangeStart.getFullYear()
+        
+        let hours = rangeStart.getHours() + 4
+        let americanFormat = 'AM'
+            if (hours > 12){
+                hours = hours - 12
+                americanFormat = 'PM'
+            }
+        let minutes = String(rangeStart.getMinutes())
+
+        let newStart = mm + '-' + dd + '-' + yyyy + ' ' + hours + ':' + minutes + ' ' + americanFormat
+        
+        
+        //END
+        let rangeEnd = e.event._instance.range.end
+        let dd_end = String(rangeEnd.getDate()).padStart(2, '0')
+        let mm_end = String(rangeEnd.getMonth() + 1).padStart(2, '0')
+        let yyyy_end = rangeEnd.getFullYear()
+        
+        let hours_end = rangeEnd.getHours() + 4
+        let americanFormat_end = 'AM'
+            if (hours_end > 12){
+                hours_end = hours_end - 12
+                americanFormat_end = 'PM'
+            }
+        let minutes_end = String(rangeEnd.getMinutes())
+
+        let newEnd = mm_end + '-' + dd_end + '-' + yyyy_end + ' ' + hours_end + ':' + minutes_end + ' ' + americanFormat_end
+        
+
+        let configObj = {
+            method: 'PATCH',
+            headers: {Authorization: `Bearer ${localStorage.token}`, 'Content-Type': 'application/json', Accept: 'application/json'},
+            body: JSON.stringify({  start: newStart, 
+                                    end: newEnd,
+                                    title: current_task.title,
+                                    content: current_task.content,
+                                    status: current_task.status,
+                                    team_member_id: current_task.team_member_id,
+                                    priority: current_task.priority,
+                                    project_id: current_task.project_id
+                                })
+        }
+
+        props.markingTaskStatus(id, configObj)
+
+    }
+
     return(
         <div className='calendar-div-container'>
             <FullCalendar 
@@ -115,6 +171,7 @@ const CalendarComponent = props => {
                     weekends= {true}
                     eventClick={(e) => displayEvent(e)}
                     dateClick = {(e) => console.log(e)}
+                    eventDrop={(e) => dropEvent(e)}
                     events={formatEvents()}
                 />
                <div>

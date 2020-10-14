@@ -163,10 +163,12 @@ function editTask(updatedTask){
 }
 
 function markingTaskStatus(id, configObj){
+
     return (dispatch) => {
         fetch(URL + 'tasks/' + id, configObj)
         .then(res => res.json())
         .then(updatedTask => {
+            console.log(updatedTask)
             dispatch(editTask(updatedTask))
         })
     }
