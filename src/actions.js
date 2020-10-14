@@ -156,5 +156,20 @@ function fetchingTasks(current_employee_id){
         })
     }
 }
+function editTask(updatedTask){
+    return{
+        type: 'edit_task', payload: updatedTask
+    }
+}
 
-export {fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function markingTaskStatus(id, configObj){
+    return (dispatch) => {
+        fetch(URL + 'tasks/' + id, configObj)
+        .then(res => res.json())
+        .then(updatedTask => {
+            dispatch(editTask(updatedTask))
+        })
+    }
+}
+
+export {markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}

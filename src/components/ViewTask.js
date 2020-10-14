@@ -1,10 +1,5 @@
 import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import {connect} from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import './createTask.css'
@@ -20,7 +15,7 @@ const ViewTask = (props) => {
     return(
         <div>
             <Button size='sm' variant="outline-primary" onClick={handleShow}>
-                Create New Task 
+                Task 
             </Button>
   
         <Modal show={show} onHide={handleClose}>

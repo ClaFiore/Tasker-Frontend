@@ -71,6 +71,40 @@ let dashboardReducer = (state = initialState, action) => {
                         tasks: [...state.tasks, action.payload],
                         filtered_tasks: [...state.filtered_tasks, action.payload]
                 }
+        case 'edit_task':
+                return {...state, 
+                        filtered_tasks: state.filtered_tasks.map(task => {
+                                if (task.id === action.payload.id){
+                                return {
+                                        ...task,
+                                        title: action.payload.title,
+                                        content: action.payload.content,
+                                        status: action.payload.status,
+                                        start: action.payload.start,
+                                        end: action.payload.end,
+                                        priority: action.payload.priority,
+                                        project_id: action.payload.project_id
+                                }
+                                }else{
+                                        return task
+                                }}),
+                        tasks: state.tasks.map(task => {
+                                if (task.id === action.payload.id){
+                                return {
+                                        ...task,
+                                        title: action.payload.title,
+                                        content: action.payload.content,
+                                        status: action.payload.status,
+                                        start: action.payload.start,
+                                        end: action.payload.end,
+                                        priority: action.payload.priority,
+                                        project_id: action.payload.project_id
+                                }
+                        }else{
+                                return task
+                        }
+                        })
+                }
         default:
             return state
     }       
