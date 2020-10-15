@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from "react-router-dom";
-// import AddTask from '../components/AddTask';
+import {gettingManagedMembers} from '../actions'
+import {fetchingProjects} from '../actions'
 import './TeamMemberViewCont.css'
 
 
@@ -31,9 +32,12 @@ const TeamMemberNav = props => {
             break
             case 'switchTeam':
                 if (props.view === 'team member')
-                props.change_view('manager')
+                {props.change_view('manager')
+                props.gettingManagedMembers(props.managed_team.id)
+                props.fetchingProjects(props.managed_team_id)}
                 else
-                props.change_view('team member')
+                {props.change_view('team member')
+                props.fetchingProjects(props.team_id)}
                 props.changeActivity('calendar')
                 break
         }
@@ -118,13 +122,16 @@ const TeamMemberNav = props => {
 
 const mapStateToProps = (state) => {
     return {logged: state.loginReducer.logged_in,
+            team_id: state.employeeReducer.current_user.employee.team_id,
             activity: state.dashboardReducer.activity,
             view: state.dashboardReducer.view,
             managed_team: state.employeeReducer.current_user.managed_team,
             projects: state.dashboardReducer.projects,
             filtered_projects: state.dashboardReducer.filtered_projects,
             tasks: state.dashboardReducer.tasks,
-            filtered_tasks: state.dashboardReducer.filtered_tasks}
+            filtered_tasks: state.dashboardReducer.filtered_tasks,
+            managed_members: state.employeeReducer.managed_members,
+            managed_team_id: state.employeeReducer.current_user.employee.managed_team_id}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -135,6 +142,8 @@ const mapDispatchToProps = (dispatch) => {
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
         change_view: ((value) => dispatch({type: "change_view", payload: value})),
         user_logout: () => dispatch({type: 'USER_LOGOUT'}),
+        gettingManagedMembers: (managed_team_id) => {dispatch(gettingManagedMembers(managed_team_id))},
+        fetchingProjects: (teamID) => {dispatch(fetchingProjects(teamID))}
     }
 }
 

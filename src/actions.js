@@ -136,6 +136,9 @@ function addingTask(configObj){
     }
 }
 
+
+
+
 function myfetchedTasks(myTasks){
     return{
         type: 'all_tasks', payload: myTasks
@@ -187,4 +190,19 @@ function deletingTask(id, configObj){
     }
 }
 
-export {deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function gotManagedMembers(team_members){
+    return{
+        type: 'all_managed_members', payload: team_members
+    }
+}
+function gettingManagedMembers(id){
+    return (dispatch) => {
+        fetch(URL + 'teams/' + id)
+        .then(res => res.json())
+        .then(teamInfo => {
+            dispatch(gotManagedMembers(teamInfo.team_members))
+        })
+    }
+}
+
+export {gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}

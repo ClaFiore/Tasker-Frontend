@@ -49,7 +49,7 @@ const CalendarComponent = props => {
                             //textColor: 'black', //this changes color font in week-view/day-view
                             extendedProps: {content, id, project_id}
                         }
-                    }else if (status === 'completed')
+                    }else 
                         return {
                             id,
                             title, 
