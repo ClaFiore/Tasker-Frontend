@@ -52,14 +52,29 @@ const TeamMemberNav = props => {
     }
 
     const filterTasks = value => {
-        if (value !== 'all'){
         let all_tasks = props.tasks
-        let filtered = all_tasks.filter(t => t.priority === value)
-        props.filterTasks(filtered)}
-        else{
-            let all_tasks = props.tasks
-            props.filterTasks(all_tasks)
+        let filtered
+        switch(value){
+            case 'all':
+                props.filterTasks(all_tasks)
+            break
+            case 'high':
+                filtered = all_tasks.filter(t => t.priority === value)
+                props.filterTasks(filtered)
+            break
+            case 'normal':
+                filtered = all_tasks.filter(t => t.priority === value)
+                props.filterTasks(filtered)
+            break
+            case 'low':
+                filtered = all_tasks.filter(t => t.priority === value)
+                props.filterTasks(filtered)
+            break
+            default:
+                filtered = all_tasks.filter(t => t.project_id === parseInt(value))
+                props.filterTasks(filtered)
         }
+        
     }
 
     
@@ -84,11 +99,16 @@ const TeamMemberNav = props => {
             </div> : null}
             {props.activity === 'calendar' ? <div>
                 <select className='menu' onChange={(e) => filterTasks(e.target.value)}>
-                    <option disabled selected>Filter Tasks by</option>
-                    <option value='high'>High Priority</option>
-                    <option value='normal'>Normal Priority</option>
-                    <option value='low'>Low Priority</option>
-                    <option value='all'>All</option>
+                    <option disabled selected>Filter Tasks by Priority</option>
+                    <option value='high' className='priority-option'>High Priority</option>
+                    <option value='normal' className='priority-option'>Normal Priority</option>
+                    <option value='low' className='priority-option'>Low Priority</option>
+                    <option value='all'>All Tasks</option>
+                </select>
+                <select className='menu' onChange={(e) => filterTasks(e.target.value)}>
+                    <option disabled selected>Filter Tasks by Project</option>
+                    {props.projects.map(p => <option key={p.id} value={p.id}>{p.title}</option>)}
+                    <option value='all'>All Tasks</option>
                 </select>
             </div> : null}
         </div>
@@ -114,7 +134,7 @@ const mapDispatchToProps = (dispatch) => {
         filterTasks: ((filtered) => dispatch({type: 'filtered_tasks', payload: filtered})),
         logged_in: ((bool) => dispatch({type: "logged_in", payload: bool})),
         change_view: ((value) => dispatch({type: "change_view", payload: value})),
-        user_logout: () => dispatch({type: 'USER_LOGOUT'})
+        user_logout: () => dispatch({type: 'USER_LOGOUT'}),
     }
 }
 
