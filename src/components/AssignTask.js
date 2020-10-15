@@ -87,7 +87,13 @@ const AssignTask = (props) => {
 
         fetch('http://localhost:3000/api/v1/tasks', configObj)
         .then(res => res.json())
-        .then(newTask => console.log(newTask))
+        .then(newTask => {
+            if (newTask.error){
+                alert('Sorry, something went wrong')
+            }
+            else
+            alert(`'${newTask.title}' task was successfully assigned`)
+            })
         handleClose()
     }
 
