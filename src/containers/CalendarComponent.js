@@ -160,6 +160,7 @@ const CalendarComponent = props => {
         <div className='calendar-div-container'>
              <FullCalendar 
                     timeZone= 'UTC'
+                    slotDuration='00:15'
                     initialView='dayGridMonth'
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
                     headerToolbar={{
