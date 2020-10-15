@@ -44,3 +44,26 @@
     float: left;
     margin-right: 50%;
 }
+
+.edit-task-input{
+    width: 100%;
+    border: transparent;
+}
+
+.edit-task-time{
+    border: transparent;
+    width: 5%;
+}
+
+.edit-task-american-format{
+    border: transparent;
+    width: 8%;
+}
+
+.edit-task-input-title{
+    width: 100%;
+    border: transparent;
+    color: #0F61D4;
+    font-weight: bold;
+    font-size: large;
+}

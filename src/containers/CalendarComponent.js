@@ -20,8 +20,13 @@ const CalendarComponent = props => {
     const [taskTitle, setTaskTitle] = useState('')
     const [taskContent, setTaskContent] = useState('')
     const [taskProject, setTaskProject] = useState('')
-    const [taskStart, setTaskStart] = useState('')
-    const [taskEnd, setTaskEnd] = useState('')
+    const [taskDate, setTaskDate] = useState('')
+    const [americanFormatStart, setAmericanFormatStart] = useState('')
+    const [americanFormatEnd, setAmericanFormatEnd] = useState('')
+    const [taskStartHH, setTaskStartHH] = useState('')
+    const [taskStartMM, setTaskStartMM] = useState('')
+    const [taskEndHH, setTaskEndHH] = useState('')
+    const [taskEndMM, setTaskEndMM] = useState('')
     const [taskStatus, setTaskStatus] = useState('')
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -67,16 +72,80 @@ const CalendarComponent = props => {
         let project = props.projects.filter(p => p.id === current_task.project_id)
         let t = project[0].title
         setTaskProject(t)
-        console.log(current_task.start)
-        let taskStartDate = new Date(e.event._instance.range.start)
-        let startTime = taskStartDate.toUTCString().split('G')[0]
-        let taskEndDate = new Date(e.event._instance.range.end)
-        let endTime = taskEndDate.toUTCString().split('G')[0]
-        setTaskStart(startTime)
-        setTaskEnd(endTime)
+        let americanFormat_start
+        let date = current_task.start.split('T')[0]
+        let start_hh = current_task.start.split('T')[1].split(':')[0]
+        let int_s = parseInt(start_hh)
+            if (int_s > 12){
+                int_s = int_s - 12
+                americanFormat_start = 'PM'
+            }else{
+                americanFormat_start = 'AM'
+            }
+        let time_start_string = String(int_s)
+            if (time_start_string.split('').length === 1){
+                time_start_string = '0' + time_start_string
+            }
+        let start_mm = current_task.start.split('T')[1].split(':')[1]
+            if (start_mm.split('').length === 1){
+                start_mm = '0' + start_mm
+            }
+            
+        let end_hh = current_task.end.split('T')[1].split(':')[0]
+        let end_mm = current_task.end.split('T')[1].split(':')[1]
+            if (end_mm.split('').length === 1){
+                end_mm = '0' + end_mm
+            }
+        let americanFormat_end
+        let int_e = parseInt(end_hh)
+            if (int_e > 12){
+                int_e = int_e - 12
+                americanFormat_end = 'PM'
+            }else{
+                americanFormat_end = 'AM'
+            }
+        let time_end_string = String(int_e)
+            if (time_end_string.split('').length === 1){
+                time_end_string = '0' + time_end_string
+            }
+            
 
+        setAmericanFormatStart(americanFormat_start)
+        setTaskDate(date)
+        setTaskStartHH(time_start_string)
+        setTaskStartMM(start_mm)
+        setTaskEndHH(time_end_string)
+        setTaskEndMM(end_mm)
+        setAmericanFormatEnd(americanFormat_end)
         handleShow()
     }
+
+    const updateTask = () => {
+        let id = taskId
+        let current_task = props.tasks.find(t => t.id === id)
+        let dd = taskDate.split('-')[2]
+        let mm = taskDate.split('-')[1]
+        let yyyy = taskDate.split('-')[0]
+        let newStart = mm + '-' + dd + '-' + yyyy + ' ' + taskStartHH + ':' + taskStartMM + ' ' + americanFormatStart
+        let newEnd = mm + '-' + dd + '-' + yyyy + ' ' + taskEndHH + ':' + taskEndMM + ' ' + americanFormatEnd
+        
+        let configObj = {
+            method: 'PATCH',
+            headers: {Authorization: `Bearer ${localStorage.token}`, 'Content-Type': 'application/json', Accept: 'application/json'},
+            body: JSON.stringify({  start: newStart, 
+                                    end: newEnd,
+                                    title: taskTitle,
+                                    content: taskContent,
+                                    status: current_task.status,
+                                    team_member_id: current_task.team_member_id,
+                                    priority: current_task.priority,
+                                    project_id: current_task.project_id
+                                })
+        }
+        props.markingTaskStatus(id, configObj)
+        handleClose()
+    }
+
 
     const markTaskAsComplete = () => {
         let id = taskId
@@ -179,18 +248,21 @@ const CalendarComponent = props => {
                 <div>
                 <Modal show={show} onHide={handleClose}>
                  <Modal.Header closeButton>
-                     <Modal.Title>{taskTitle}</Modal.Title>
+                    <input className='edit-task-input-title' value={taskTitle} onChange={(e)=>setTaskTitle(e.target.value)}/> 
                  </Modal.Header>
                      <Modal.Body>
-                        <span className='display-task-modal-span'>Notes: </span>{taskContent} <br></br>
-                         <span className='display-task-modal-span'>From: </span> <span>{taskStart}</span> <br></br>
-                         <span className='display-task-modal-span'>To: </span><span>{taskEnd}</span> <br></br>
+                        <span className='display-task-modal-span'>Notes: </span> <span><input className='edit-task-input' value={taskContent} onChange={(e)=>setTaskContent(e.target.value)}/></span> <br></br>
+                        <span className='display-task-modal-span'>Date: </span> <span><input className='edit-task-input' value={taskDate} onChange={(e)=>setTaskDate(e.target.value)}/></span> <br></br>
+                         <span className='display-task-modal-span'>From: </span> <span><input className='edit-task-time' value={taskStartHH} onChange={(e) => setTaskStartHH(e.target.value)}/></span><span>:</span>
+                         <span><input className='edit-task-time' value={taskStartMM} onChange={(e) => setTaskStartMM(e.target.value)}/></span><span><input className='edit-task-american-format' value={americanFormatStart} onChange={(e)=>setAmericanFormatStart(e.target.value)}/></span> <br></br>
+                         <span className='display-task-modal-span'>To: </span><span><input className='edit-task-time' value={taskEndHH} onChange={(e) => setTaskEndHH(e.target.value)}/></span><span>:</span>
+                        <span><input className='edit-task-time' value={taskEndMM} onChange={(e) => setTaskEndMM(e.target.value)}/></span><span><input className='edit-task-american-format' value={americanFormatEnd} onChange={(e)=>setAmericanFormatEnd(e.target.value)}/></span> <br></br>
                          <span className='display-task-modal-span'>Project: </span>{taskProject}
                      </Modal.Body>
                  <Modal.Footer>
                         <button className='btn-circle-red'>&#10008;</button>
                          {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow' onClick={() => markTaskAsInProgress()}>&#x270d;</button>}
-                        <Button size='sm' variant="primary" className='edit-btn'>Edit</Button>
+                        <Button size='sm' variant="primary" className='edit-btn' onClick={() => updateTask()}>Update</Button>
 
                      </Modal.Footer>
                  </Modal>
@@ -198,6 +270,9 @@ const CalendarComponent = props => {
         </div>
      )
  }
+
+
+
 
 
 const mapStateToProps = (state) => {
