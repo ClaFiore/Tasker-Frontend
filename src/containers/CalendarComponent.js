@@ -12,6 +12,7 @@ import './calendar.css'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import {markingTaskStatus} from '../actions'
+import {deletingTask} from '../actions'
 
 const CalendarComponent = props => {
 
@@ -220,9 +221,15 @@ const CalendarComponent = props => {
                                     project_id: current_task.project_id
                                 })
         }
-
         props.markingTaskStatus(id, configObj)
+    }
 
+    const deleteTask = () => {
+        console.log('deleting')
+        let id = taskId
+        let configObj = {method: 'DELETE', headers: {Authorization: `Bearer ${localStorage.token}`}}
+        props.deletingTask(id, configObj)
+        handleClose()
     }
 
      return(
@@ -260,7 +267,7 @@ const CalendarComponent = props => {
                          <span className='display-task-modal-span'>Project: </span>{taskProject}
                      </Modal.Body>
                  <Modal.Footer>
-                        <button className='btn-circle-red'>&#10008;</button>
+                        <button className='btn-circle-red' onClick={() => deleteTask()}>&#10008;</button>
                          {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow' onClick={() => markTaskAsInProgress()}>&#x270d;</button>}
                         <Button size='sm' variant="primary" className='edit-btn' onClick={() => updateTask()}>Update</Button>
 
@@ -286,7 +293,8 @@ const mapStateToProps = (state) => {
  const mapDispatchToProps = (dispatch) => {
     return{
         changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
-        markingTaskStatus: (id, configObj) => {dispatch(markingTaskStatus(id, configObj))}
+        markingTaskStatus: (id, configObj) => {dispatch(markingTaskStatus(id, configObj))},
+        deletingTask: (id, configObj) => {dispatch(deletingTask(id, configObj))}
     }
 }
 

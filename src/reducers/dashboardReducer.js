@@ -60,6 +60,12 @@ let dashboardReducer = (state = initialState, action) => {
                         filtered_projects: state.filtered_projects.filter(proj => proj.id !== action.payload),
                         projects: state.projects.filter(proj => proj.id !== action.payload)
                 }
+        case 'delete_task':
+                return {
+                        ...state,
+                        tasks: state.tasks.filter(task => task.id !== action.payload),
+                        filtered_tasks: state.filtered_tasks.filter(task => task.id !== action.payload)
+                }
         case 'all_tasks':
                 return{
                         ...state,

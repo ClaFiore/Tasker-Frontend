@@ -163,7 +163,6 @@ function editTask(updatedTask){
 }
 
 function markingTaskStatus(id, configObj){
-
     return (dispatch) => {
         fetch(URL + 'tasks/' + id, configObj)
         .then(res => res.json())
@@ -174,4 +173,18 @@ function markingTaskStatus(id, configObj){
     }
 }
 
-export {markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function deletedTask(id){
+    return{
+        type: 'delete_task', payload: id
+    }
+}
+function deletingTask(id, configObj){
+    return (dispatch) => {
+        fetch(URL + 'tasks/' + id, configObj)
+        .then(() => {
+            dispatch(deletedTask(id))
+        })
+    }
+}
+
+export {deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
