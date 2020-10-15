@@ -12,7 +12,6 @@
     font-size: 15px;
     line-height: 1.42857;
     background-color: #49AC52;
-    color: white;
 }
 
 .btn-circle-yellow {
@@ -26,4 +25,22 @@
     background-color: #FAF784;
     /* background-color: #0F61D4; */
     color: black;
+}
+
+.btn-circle-red {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.42857;
+    background-color: #fa8884;
+    /* background-color: #0F61D4; */
+    color: black;
+}
+
+.edit-btn{
+    float: left;
+    margin-right: 50%;
 }

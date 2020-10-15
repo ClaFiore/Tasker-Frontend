@@ -156,9 +156,9 @@ const CalendarComponent = props => {
 
     }
 
-    return(
+     return(
         <div className='calendar-div-container'>
-            <FullCalendar 
+             <FullCalendar 
                     timeZone= 'UTC'
                     initialView='dayGridMonth'
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
@@ -174,33 +174,29 @@ const CalendarComponent = props => {
                     eventDrop={(e) => dropEvent(e)}
                     eventResize={(e)=> dropEvent(e)}
                     events={formatEvents()}
-                />
-               <div>
-               <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{taskTitle}</Modal.Title>
-                </Modal.Header>
-                    <Modal.Body>
-                        {taskContent}
-                    </Modal.Body>
-                    <Modal.Body>
-                        <span className='display-task-modal-span'>Start: </span> <span>{taskStart}</span> <br></br>
-                        <span className='display-task-modal-span'>End: </span>{taskEnd}
-                    </Modal.Body>
-                    <Modal.Body>
-                        <span className='display-task-modal-span'>Project: </span>{taskProject}
-                    </Modal.Body>
-                <Modal.Footer>
-                        {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow' onClick={() => markTaskAsInProgress()}>&#x270d;</button>}
-                        <Button size='sm' variant="secondary" onClick={handleClose}>
-                        Back
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-               </div>
+                 />
+                <div>
+                <Modal show={show} onHide={handleClose}>
+                 <Modal.Header closeButton>
+                     <Modal.Title>{taskTitle}</Modal.Title>
+                 </Modal.Header>
+                     <Modal.Body>
+                        <span className='display-task-modal-span'>Notes: </span>{taskContent} <br></br>
+                         <span className='display-task-modal-span'>From: </span> <span>{taskStart}</span> <br></br>
+                         <span className='display-task-modal-span'>To: </span><span>{taskEnd}</span> <br></br>
+                         <span className='display-task-modal-span'>Project: </span>{taskProject}
+                     </Modal.Body>
+                 <Modal.Footer>
+                        <button className='btn-circle-red'>&#10008;</button>
+                         {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow' onClick={() => markTaskAsInProgress()}>&#x270d;</button>}
+                        <Button size='sm' variant="primary" className='edit-btn'>Edit</Button>
+
+                     </Modal.Footer>
+                 </Modal>
+                </div>
         </div>
-    )
-}
+     )
+ }
 
 
 const mapStateToProps = (state) => {
@@ -211,7 +207,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+ const mapDispatchToProps = (dispatch) => {
     return{
         changeActivity: ((value) => dispatch({type: 'changeActivity', payload: value})),
         markingTaskStatus: (id, configObj) => {dispatch(markingTaskStatus(id, configObj))}
@@ -219,4 +215,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarComponent)
+ export default connect(mapStateToProps, mapDispatchToProps)(CalendarComponent)
