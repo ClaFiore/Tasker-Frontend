@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './TeamMemberViewCont.css'
 import CreateTask from '../components/CreateTask'
 import AddProject from '../components/AddProject'
+import AssignTask from '../components/AssignTask'
 
 const TeamSideBar = props => {
 
@@ -23,7 +24,8 @@ const TeamSideBar = props => {
                 <p>{props.employee.title}</p>
                 <p>Department: {props.employee.department}</p>
             </div>
-            {props.activity === 'calendar' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
+            {props.activity === 'calendar' && props.view === 'team member' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
+            {props.activity === 'calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
             {props.view === 'manager' && props.activity === 'projects' ?
                 <div className='create-project-btn'>
                 <AddProject/>
