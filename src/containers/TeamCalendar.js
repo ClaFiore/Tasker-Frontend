@@ -18,13 +18,11 @@ const TeamCalendar = props => {
 
     const formatEvents = () => {
 
-        
         let arrays = props.managed_members.map(member => member.tasks)
         let tasks = []
         arrays.map(array => {tasks = [...tasks, ...array]})
      
             return tasks.map(task => {
-                
                 
                   const {id, title, start, end, content, status, project_id, team_member_id, team_member} = task
                   let startTime = new Date(start)
@@ -55,7 +53,6 @@ const TeamCalendar = props => {
                     //     }
                     // }
             })
-        
     }
 
 
@@ -65,7 +62,7 @@ const TeamCalendar = props => {
              <FullCalendar 
                     timeZone= 'UTC'
                     slotDuration='00:15'
-                    initialView='dayGridMonth'
+                    initialView='list'
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
                     headerToolbar={{
                         left: 'today,prev,next',

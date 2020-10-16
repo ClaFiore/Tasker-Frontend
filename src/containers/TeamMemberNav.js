@@ -83,7 +83,10 @@ const TeamMemberNav = props => {
                 filtered = all_tasks.filter(t => t.project_id === parseInt(value))
                 props.filterTasks(filtered)
         }
-        
+    }
+
+    const filterByMember = id => {
+        console.log(id)
     }
 
     
@@ -122,8 +125,9 @@ const TeamMemberNav = props => {
                 </select>
             </div> : null}
             {props.activity === 'team_calendar' ? <div>
-                <select className='menu'>
+                <select className='menu' onChange={(e) => filterByMember(e.target.value)}>
                     <option disabled selected>Filter Tasks by Employee</option>
+                        {props.managed_members.map(m => <option key={m.id} value={m.id}>{m.first_name} {m.last_name}</option>)}
                 </select>
             </div> : null}
         </div>
