@@ -36,12 +36,14 @@ const TeamMemberNav = props => {
             case 'switchTeam':
                 if (props.view === 'team member')
                 {props.change_view('manager')
+                props.changeActivity('team_calendar')
                 props.gettingManagedMembers(props.managed_team.id)
-                props.fetchingProjects(props.managed_team_id)}
+                props.fetchingProjects(props.managed_team_id)
+                }
                 else
                 {props.change_view('team member')
-                props.fetchingProjects(props.team_id)}
-                props.changeActivity('calendar')
+                props.fetchingProjects(props.team_id)
+                props.changeActivity('calendar')}
                 break
         }
     }
@@ -91,8 +93,8 @@ const TeamMemberNav = props => {
             <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
                 <option selected disabled>Menu</option>
                 {props.view === 'manager' ? <option value='team_calendar'>Team's Calendar</option> : null}
-                <option value='calendar'>View My Calendar</option>
-                <option value='profile'>View My Profile</option>
+                {props.view === 'team member' ? <option value='calendar'>View My Calendar</option> : null}
+                {props.view === 'team member' ? <option value='profile'>View My Profile</option> : null}
                 <option value='projects'>View Team's Projects</option>
                 {props.managed_team ? <option value='switchTeam'>Switch Team</option> : null}
                 <option value='logout'>Logout</option>

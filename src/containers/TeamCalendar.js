@@ -16,7 +16,7 @@ import {deletingTask} from '../actions'
 
 const TeamCalendar = props => {
     return(
-        <div className='calendar-div-container'>
+        <div className='calendar-div-manager'>
              <FullCalendar 
                     timeZone= 'UTC'
                     slotDuration='00:15'

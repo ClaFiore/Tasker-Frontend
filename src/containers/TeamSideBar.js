@@ -10,7 +10,7 @@ const TeamSideBar = props => {
 
     return(
         <div className={props.view === 'team member' ? 'sidebar-div' : 'sideBarManager'}>
-                <div className='manager-team-member-view-div'>
+                <div className={props.view === 'team member' ? 'manager-team-member-view-div' : 'managerView-div'}>
                     <h4>{props.view.toUpperCase()}</h4>
                     {props.view === 'manager' ? 
                         <p>'{props.managed_team.name}'</p>
@@ -18,14 +18,14 @@ const TeamSideBar = props => {
                         <p>'{props.team.name}'</p>
                     }
                 </div>
-            <div className='profile-info'>
+            <div className={props.view ==='team member' ? 'profile-info' : 'profileInfoManager'}>
                 <h4>{props.employee.first_name}</h4>
                 <p>{props.employee.last_name}</p>
                 <p>{props.employee.title}</p>
                 <p>Department: {props.employee.department}</p>
             </div>
             {props.activity === 'calendar' && props.view === 'team member' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
-            {props.activity === 'calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
+            {props.activity === 'team_calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
             {props.view === 'manager' && props.activity === 'projects' ?
                 <div className='create-project-btn'>
                 <AddProject/>

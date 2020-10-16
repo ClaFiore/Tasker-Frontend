@@ -94,7 +94,7 @@ const CreateTask = (props) => {
 
     return(
         <div>
-            <Button size='sm' variant="outline-primary" onClick={handleShow}>
+            <Button size='sm' variant="light" onClick={handleShow}>
                 Create New Task 
             </Button>
   

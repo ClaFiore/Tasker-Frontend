@@ -99,7 +99,7 @@ const AssignTask = (props) => {
 
     return(
         <div>
-            <Button size='sm' variant="outline-primary" onClick={handleShow}>
+            <Button size='sm' variant="light" onClick={handleShow}>
                 Assign Task 
             </Button>
         <Modal show={show} onHide={handleClose}>
