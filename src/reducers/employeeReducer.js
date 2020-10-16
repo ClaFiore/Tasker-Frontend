@@ -10,6 +10,20 @@ let employeeReducer = (state = initialState, action) => {
         case 'all_managed_members':
             return {...state,
             managed_members: action.payload}
+        case 'assigned_task':
+            return{
+                ...state,
+                managed_members: state.managed_members.map(member => {
+                    if (member.id === action.payload.team_member_id){
+                        return{
+                            ...member,
+                            tasks: [...member.tasks, action.payload]
+                        }
+                    }else{
+                        return member
+                    }
+                })
+            }
         default:
             return state
         }

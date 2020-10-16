@@ -205,4 +205,25 @@ function gettingManagedMembers(id){
     }
 }
 
-export {gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+
+function assignedTask(newTask){
+    return{
+        type: 'assigned_task', payload: newTask
+    }
+}
+
+function assigningTask(configObj){
+    return (dispatch) => {
+        fetch(URL + 'tasks', configObj)
+        .then(res => res.json())
+        .then(newTask => {
+            if (newTask.error){
+                alert('Sorry, something went wrong')
+            }
+            else
+            dispatch(assignedTask(newTask))
+            })
+    }
+}
+
+export {assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}

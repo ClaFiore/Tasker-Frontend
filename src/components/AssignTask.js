@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import {connect} from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import './createTask.css'
+import {assigningTask} from '../actions'
 
 
 
@@ -84,16 +85,7 @@ const AssignTask = (props) => {
                 status: 'in progress'
             })
         }
-
-        fetch('http://localhost:3000/api/v1/tasks', configObj)
-        .then(res => res.json())
-        .then(newTask => {
-            if (newTask.error){
-                alert('Sorry, something went wrong')
-            }
-            else
-            alert(`'${newTask.title}' task was successfully assigned`)
-            })
+        props.assigningTask(configObj)
         handleClose()
     }
 
@@ -155,10 +147,14 @@ const mapStateToProps = state => {
         managed_members: state.employeeReducer.managed_members
         }
 }
+const mapDispatchToProps = (dispatch) => {
+    return{
+        assigningTask: (configObj) => {dispatch(assigningTask(configObj))},
+    }
+}
 
 
-
-export default connect(mapStateToProps)(AssignTask)
+export default connect(mapStateToProps, mapDispatchToProps)(AssignTask)
 
 
 
