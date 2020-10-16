@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-
+import EditColor from './EditColor'
 import './profile.css'
 import EditProfile from './EditProfile'
 
@@ -10,7 +10,7 @@ const Profile = props => {
     
     return(
         <div className='profile-container-div'>
-            <h3>Hello {props.employee.first_name}!</h3>
+            <h3 style={{color: props.employee.color}}>Hello {props.employee.first_name}!</h3>
             <br></br>
             <p><span className='elenco'>Name: </span><span>{props.employee.first_name}</span></p>
             <p><span className='elenco'>Last Name: </span><span>{props.employee.last_name}</span></p>
@@ -24,6 +24,8 @@ const Profile = props => {
             <p><span className='elenco'>Date of Birth: </span><span>{props.employee.dob}</span></p>
             <br></br>
             <EditProfile />
+            <br></br>
+            <EditColor />
         </div>
     )
 }

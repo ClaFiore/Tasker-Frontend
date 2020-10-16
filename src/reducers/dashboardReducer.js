@@ -3,7 +3,8 @@ let initialState = {view: 'team member',
                     projects: [],
                     filtered_projects: [],
                     tasks: [],
-                    filtered_tasks: [],}
+                    filtered_tasks: [],
+                    }
 
 
 let dashboardReducer = (state = initialState, action) => {

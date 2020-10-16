@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import './profile.css'
 import {updatingUser} from '../actions'
 
+
 const EditProfile = props => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -35,7 +36,7 @@ const EditProfile = props => {
         props.updatingUser(employee, id)
         handleClose()
     }
-    
+
     
     return(
         <div >
@@ -48,7 +49,7 @@ const EditProfile = props => {
                 <Modal.Title>Edit</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <Form style={{'marginTop': '20px'}} onSubmit={(e) => updateUser(e)}>
+            <Form style={{'marginTop': '10px'}} onSubmit={(e) => updateUser(e)}>
                 <Form.Row>
                     <Col>
                         <Form.Label>First Name</Form.Label>
@@ -91,7 +92,7 @@ const EditProfile = props => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                Back
+                    Back
                 </Button>
             </Modal.Footer>
         </Modal>
