@@ -18,44 +18,42 @@ const TeamCalendar = props => {
 
     const formatEvents = () => {
 
-        let randomColor
+        
         let arrays = props.managed_members.map(member => member.tasks)
         let tasks = []
-        arrays.map(array => {
-            randomColor = Math.floor(Math.random()*16777215).toString(16);
-            tasks = [...tasks, ...array]})
+        arrays.map(array => {tasks = [...tasks, ...array]})
      
             return tasks.map(task => {
                 
                 
-                  const {id, title, start, end, content, status, project_id, team_member_id} = task
+                  const {id, title, start, end, content, status, project_id, team_member_id, team_member} = task
                   let startTime = new Date(start)
                   let endTime = new Date(end)
                   
-                    if (status === 'in progress'){
+                    // if (status === 'in progress'){
                         return {
                             title, 
                             id,
                             start: startTime,
                             end: endTime,
                             content: content,
-                            borderColor: '#'+randomColor,
-                            backgroundColor: '#'+randomColor,
+                            borderColor: task.team_member.color,
+                            backgroundColor: task.team_member.color,
                             //textColor: 'black', 
                             extendedProps: {content, id, project_id, team_member_id, status}
                         }
-                    }else{
-                        return {
-                            id,
-                            title, 
-                            start: startTime,
-                            end: endTime,
-                            content: content,
-                            backgroundColor: '#'+randomColor,
-                            borderColor: '#'+randomColor,
-                            extendedProps: {content, id, project_id, team_member_id, status}
-                        }
-                    }
+                    // }else{
+                    //     return {
+                    //         id,
+                    //         title, 
+                    //         start: startTime,
+                    //         end: endTime,
+                    //         content: content,
+                    //         backgroundColor: 'blue',
+                    //         borderColor: 'blue',
+                    //         extendedProps: {content, id, project_id, team_member_id, status}
+                    //     }
+                    // }
             })
         
     }
