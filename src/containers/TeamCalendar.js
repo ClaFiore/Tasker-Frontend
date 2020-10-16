@@ -18,14 +18,16 @@ const TeamCalendar = props => {
 
     const formatEvents = () => {
 
-      
+        let randomColor
         let arrays = props.managed_members.map(member => member.tasks)
         let tasks = []
-        arrays.map(array => tasks = [...tasks, ...array])
+        arrays.map(array => {
+            randomColor = Math.floor(Math.random()*16777215).toString(16);
+            tasks = [...tasks, ...array]})
      
             return tasks.map(task => {
                 
-                const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                
                   const {id, title, start, end, content, status, project_id, team_member_id} = task
                   let startTime = new Date(start)
                   let endTime = new Date(end)

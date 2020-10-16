@@ -82,7 +82,8 @@ const AssignTask = (props) => {
                 priority: e.target.priority.value,
                 start: todayStart,
                 end: todayEnd,
-                status: 'in progress'
+                status: 'in progress',
+                team_leader_id: props.current_user.employee.id
             })
         }
         props.assigningTask(configObj)
