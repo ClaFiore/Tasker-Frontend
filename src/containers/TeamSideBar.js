@@ -9,7 +9,7 @@ import AssignTask from '../components/AssignTask'
 const TeamSideBar = props => {
 
     return(
-        <div className='sidebar-div'>
+        <div className={props.view === 'team member' ? 'sidebar-div' : 'sideBarManager'}>
                 <div className='manager-team-member-view-div'>
                     <h4>{props.view.toUpperCase()}</h4>
                     {props.view === 'manager' ? 

@@ -16,7 +16,26 @@ import {deletingTask} from '../actions'
 
 const TeamCalendar = props => {
     return(
-        <div>TEAM's CALENDAR</div>
+        <div className='calendar-div-container'>
+             <FullCalendar 
+                    timeZone= 'UTC'
+                    slotDuration='00:15'
+                    initialView='dayGridMonth'
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+                    headerToolbar={{
+                        left: 'today,prev,next',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
+                      }}
+                    editable={false}
+                    weekends= {true}
+                    eventClick={null}
+                    dateClick = {null}
+                    eventDrop={null}
+                    eventResize={null}
+                    events={null}
+            />
+        </div>
     )
 }
 

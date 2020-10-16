@@ -23,7 +23,18 @@
     height: 100vh;
     width: 20vw;
     flex-basis: auto;
-    background-color: #8FD5FF;
+    background-color: #8FD5FF
+}
+
+.sideBarManager{
+    display: flex;
+    /* position: relative; */
+    flex-direction: column;
+    align-self: stretch;
+    height: 100vh;
+    width: 20vw;
+    flex-basis: auto;
+    background-color: rgb(66, 182, 91)
 }
 
 .calendar-div-container{
@@ -61,9 +72,21 @@
     width: 80vw;
     height: 60px;
     background: #8FD5FF;
-    border: 1 px solid #0F61D3;
+    
     /* position: absolute; */
     z-index: 1; 
+}
+
+.navManager{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-basis: auto;
+    width: 80vw;
+    height: 60px;
+    background: rgb(66, 182, 91);
+    /* position: absolute; */
+    z-index: 1;
 }
 
 .menu{

@@ -87,7 +87,7 @@ const TeamMemberNav = props => {
     
 
     return(
-        <div className='navbar'>
+        <div className={props.view === 'team member' ? 'navbar' : 'navManager'} >
             <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
                 <option selected disabled>Menu</option>
                 {props.view === 'manager' ? <option value='team_calendar'>Team's Calendar</option> : null}
