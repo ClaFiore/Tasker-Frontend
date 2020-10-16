@@ -121,6 +121,11 @@ const TeamMemberNav = props => {
                     <option value='all'>All Tasks</option>
                 </select>
             </div> : null}
+            {props.activity === 'team_calendar' ? <div>
+                <select className='menu'>
+                    <option disabled selected>Filter Tasks by Employee</option>
+                </select>
+            </div> : null}
         </div>
     )
 }
