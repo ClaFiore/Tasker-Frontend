@@ -12,11 +12,7 @@ const TeamSideBar = props => {
         <div className={props.view === 'team member' ? 'sidebar-div' : 'sideBarManager'}>
                 <div className={props.view === 'team member' ? 'manager-team-member-view-div' : 'managerView-div'}>
                     <h4>{props.view.toUpperCase()}</h4>
-                    {props.view === 'manager' ? 
-                        <p>'{props.managed_team.name}'</p>
-                        :
-                        <p>'{props.team.name}'</p>
-                    }
+                    {props.view === 'manager' ? <p>'{props.managed_team.name}'</p> : <p>'{props.team.name}'</p>}
                 </div>
             <div className={props.view ==='team member' ? 'profile-info' : 'profileInfoManager'}>
                 <h4>{props.employee.first_name}</h4>
@@ -26,12 +22,8 @@ const TeamSideBar = props => {
             </div>
             {props.activity === 'calendar' && props.view === 'team member' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
             {props.activity === 'team_calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
-            {props.view === 'manager' && props.activity === 'projects' ?
-                <div className='create-project-btn'>
-                <AddProject/>
-                </div>
-                :
-                null}
+            {props.view === 'manager' && props.activity === 'projects' ? <div className='create-project-btn'> <AddProject/> </div> : null}
+            {props.view === 'manager' ? <div className='profileInfoManager'>{props.managed_members.map(member => <div className='legenda-mini-div'><button className='managed-members-circle' style={{'background-color': `${member.color}`}}></button><p>{member.first_name} {member.last_name}</p></div>)}</div> : null}
         </div>
 
     )
@@ -43,7 +35,8 @@ const mapStateToProps = (state) => {
         team: state.employeeReducer.current_user.team,
         view: state.dashboardReducer.view,
         managed_team: state.employeeReducer.current_user.managed_team,
-        activity: state.dashboardReducer.activity
+        activity: state.dashboardReducer.activity,
+        managed_members: state.employeeReducer.managed_members
     }
 }
 
