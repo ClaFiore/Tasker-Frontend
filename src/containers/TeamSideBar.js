@@ -23,7 +23,7 @@ const TeamSideBar = props => {
             {props.activity === 'calendar' && props.view === 'team member' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
             {props.activity === 'team_calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
             {props.view === 'manager' && props.activity === 'projects' ? <div className='create-project-btn'> <AddProject/> </div> : null}
-            {props.view === 'manager' ? <div className='profileInfoManager'>{props.managed_members.map(member => <div className='legenda-mini-div'><button className='managed-members-circle' style={{'background-color': `${member.color}`}}></button><p>{member.first_name} {member.last_name}</p></div>)}</div> : null}
+            {props.view === 'manager' ? <div className='profileInfoManager'>{props.managed_members.map(member => <div key={member.id} className='legenda-mini-div'><button className='managed-members-circle' style={{'backgroundColor': `${member.color}`}}></button><p>{member.first_name} {member.last_name}</p></div>)}</div> : null}
         </div>
 
     )
