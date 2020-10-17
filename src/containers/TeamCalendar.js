@@ -153,7 +153,7 @@ const TeamCalendar = props => {
                          <span className='display-task-modal-span'>Project: </span>{currentTaskProject.title}
                      </Modal.Body>
                     <Modal.Header>
-                        <p><span>Employee: </span><span>{taskMember.first_name} {taskMember.last_name}</span></p>
+                        <p><span className='display-task-modal-span'>Employee: </span><span className='employee-task-modal-manager' style={{color: `${taskMember.color}`}}>{taskMember.first_name} {taskMember.last_name}</span></p>
                     </Modal.Header>
                  </Modal>
                 </div>

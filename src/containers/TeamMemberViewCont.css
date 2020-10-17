@@ -171,3 +171,8 @@
 .legenda-mini-div{
     display: flex;
 }
+
+
+.employee-task-modal-manager{
+    font-weight: bold;
+}
