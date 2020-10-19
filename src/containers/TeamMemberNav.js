@@ -101,7 +101,7 @@ const TeamMemberNav = props => {
             e.preventDefault()
             onClick(e)}}>
                 <i className="fas fa-bell fa-2x"></i>
-                <Badge pill variant="danger">{props.notifications.length > 0 ? props.notifications.length : null}</Badge>
+                <Badge pill variant="danger">{props.unread_notifications.length > 0 ? props.unread_notifications.length : null}</Badge>
         </a>
       ))
       
@@ -175,7 +175,9 @@ const mapStateToProps = (state) => {
             filtered_tasks: state.dashboardReducer.filtered_tasks,
             managed_members: state.employeeReducer.managed_members,
             managed_team_id: state.employeeReducer.current_user.employee.managed_team_id,
-            notifications: state.dashboardReducer.notifications}
+            notifications: state.dashboardReducer.notifications,
+            unread_notifications: state.dashboardReducer.unread_notifications
+        }
 }
 
 const mapDispatchToProps = (dispatch) => {

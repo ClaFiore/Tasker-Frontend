@@ -4,7 +4,8 @@ let initialState = {view: 'team member',
                     filtered_projects: [],
                     tasks: [],
                     filtered_tasks: [],
-                    notifications: []
+                    notifications: [],
+                    unread_notifications: []
                     }
 
 
@@ -115,19 +116,20 @@ let dashboardReducer = (state = initialState, action) => {
                 }
         case 'my_notifications':
                 return {...state,
-                        notifications: action.payload}
+                        notifications: action.payload,
+                        unread_notifications: action.payload.filter(notif => notif.read === false)}
         case 'updated_notification':
                 return{...state,
-                notifications: state.notifications.map(notif => {
-                        if (notif.id === action.payload.id){
-                                return {
-                                        ...notif,
-                                        read: true
+                        notifications: state.notifications.map(notif => {
+                                if (notif.id === action.payload.id){
+                                        return {
+                                                ...notif,
+                                                read: true
+                                        }
+                                }else{
+                                        return notif
                                 }
-                        }else{
-                                return notif
-                        }
-                })
+                        })
         }
         default:
             return state
