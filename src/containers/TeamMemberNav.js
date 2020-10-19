@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import {gettingManagedMembers} from '../actions'
 import {fetchingProjects} from '../actions'
 import './TeamMemberViewCont.css'
+import Badge from 'react-bootstrap/Badge'
 
 
 const TeamMemberNav = props => {
@@ -88,6 +89,12 @@ const TeamMemberNav = props => {
 
     return(
         <div className={props.view === 'team member' ? 'navbar' : 'navManager'} >
+            
+                <div className = "notification">
+                <i className="fas fa-bell fa-2x"></i>
+                <Badge pill variant="danger">3</Badge>
+                </div>
+
             <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
                 <option selected disabled>Menu</option>
                 {props.view === 'manager' ? <option value='team_calendar'>Team's Calendar</option> : null}
