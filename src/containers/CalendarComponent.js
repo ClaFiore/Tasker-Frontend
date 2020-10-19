@@ -289,8 +289,7 @@ const mapStateToProps = (state) => {
     return {
         projects: state.dashboardReducer.projects,
         tasks: state.dashboardReducer.tasks,
-        filtered_tasks: state.dashboardReducer.filtered_tasks,
-        cal_css: state.dashboardReducer.cal_css
+        filtered_tasks: state.dashboardReducer.filtered_tasks
     }
 }
 

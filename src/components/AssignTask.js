@@ -76,7 +76,7 @@ const AssignTask = (props) => {
             headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
             body: JSON.stringify({
                 title: e.target.title.value,
-                content: e.target.content.value,
+                message: e.target.message.value,
                 team_member_id: e.target.member_id.value,
                 project_id: e.target.project_id.value,
                 priority: e.target.priority.value,
@@ -120,7 +120,7 @@ const AssignTask = (props) => {
                         </Col>
                         <Col>
                             <Form.Label>Notes</Form.Label>
-                            <Form.Control name="content" placeholder="Enter content" />
+                            <Form.Control name="message" placeholder="Enter content" />
                         </Col>
                     </Form.Row>
                     <br></br>

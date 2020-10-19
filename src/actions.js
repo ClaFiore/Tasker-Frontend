@@ -240,10 +240,27 @@ function fetchingNotifications(user_id){
     fetch(URL + 'notifications', configObj)
     .then(res => res.json())
     .then(allNotifications => {
-        let current_user_notifications = allNotifications.filter(notif => notif.team_member_id === user_id && notif.read === false)
+        let current_user_notifications = allNotifications.filter(notif => notif.team_member_id === user_id)
         dispatch(fetchedNotifications(current_user_notifications))
     })
     }
 }
 
-export {fetchingNotifications, assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function readNotification(updatedNotification){
+    return{
+        type: 'updated_notification', payload: updatedNotification
+    }
+}
+
+function readingNotification(notification_id, configObj){
+    return (dispatch) => {
+    fetch(URL + 'notifications/' + notification_id, configObj)
+    .then(res => res.json())
+    .then(updatedNotification => {
+        dispatch(readNotification(updatedNotification))
+    })
+    }
+}
+
+
+export {readingNotification, fetchingNotifications, assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}

@@ -184,14 +184,6 @@
   z-index: 100000 !important;
 }
 
-.dropdownNotifications{
-    z-index: 100000 !important;
-    background-color: white;
-    height: fit-content;
-    width: 300px;
-    
-}
-
 
 .fc .fc-button-group{
     z-index: 0;
@@ -203,4 +195,44 @@
 
 .fc .fc-scroller-harness{
     z-index: 0;
+}
+
+.dropdownNotifications{
+    z-index: 100000 !important;
+    background-color: white;
+    height: fit-content;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* .notifContent{
+    
+}
+
+.btnNotifDiv{
+
+} */
+
+.btn-notif-unread{
+    width: 5px;
+    height: 12px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.42857;
+    margin-right: 5px;
+    margin-top: 5px;
+    float: left;
+    background-color: #0F61D3;
+}
+
+.notifMessage{
+    margin-left: 15px;
+    margin-bottom: 0mm;
+}
+
+.timestamp{
+    color: grey;
+    font-size: small;
+    margin-left: 15px;
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from "react-router-dom";
 import {gettingManagedMembers} from '../actions'
-import {fetchingProjects} from '../actions'
+import {fetchingProjects, readingNotification} from '../actions'
 import './TeamMemberViewCont.css'
 import Badge from 'react-bootstrap/Badge'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -88,7 +88,12 @@ const TeamMemberNav = props => {
 
 
     const handleNotifications = e => {
-        console.log(e)
+        let notification_id = e
+        let configObj = {method: 'PATCH',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`},
+        body: JSON.stringify({read: true})
+        }
+        props.readingNotification(notification_id, configObj)
     }
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -108,9 +113,13 @@ const TeamMemberNav = props => {
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
                 {props.notifications.length > 0 ? 
                 <Dropdown.Menu >
-                    {props.notifications.map(notif => <div className='dropdownNotifications'><Dropdown.Item eventKey={notif.task_id} >
-                        <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
-                        <p>{notif.task.content ? notif.task.content : null}</p>
+                    {props.notifications.map(notif => <div key={notif.id} className='dropdownNotifications'><Dropdown.Item eventKey={notif.id} >
+                        <div className='btnNotifDiv'><button className='btn-notif-unread'></button></div>
+                        <div className='notifContent'>
+                            <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
+                            <p className='notifMessage'>{notif.message}</p>
+                            <span className='timestamp'>{notif.time}</span>
+                        </div>
                     </Dropdown.Item></div>)}
                 </Dropdown.Menu> 
                 : null} 
@@ -178,7 +187,8 @@ const mapDispatchToProps = (dispatch) => {
         change_view: ((value) => dispatch({type: "change_view", payload: value})),
         user_logout: () => dispatch({type: 'USER_LOGOUT'}),
         gettingManagedMembers: (managed_team_id) => {dispatch(gettingManagedMembers(managed_team_id))},
-        fetchingProjects: (teamID) => {dispatch(fetchingProjects(teamID))}
+        fetchingProjects: (teamID) => {dispatch(fetchingProjects(teamID))},
+        readingNotification: (notification_id, configObj) => {dispatch(readingNotification(notification_id, configObj))}
     }
 }
 
