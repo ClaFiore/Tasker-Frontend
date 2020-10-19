@@ -110,6 +110,7 @@ const TeamMemberNav = props => {
                 <Dropdown.Menu >
                     {props.notifications.map(notif => <div className='dropdownNotifications'><Dropdown.Item eventKey={notif.task_id} >
                         <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
+                        <p>{notif.task.content ? notif.task.content : null}</p>
                     </Dropdown.Item></div>)}
                 </Dropdown.Menu> 
                 : null} 

@@ -181,9 +181,26 @@
 
 .notification{
   margin-right: 10px;
+  z-index: 100000 !important;
 }
 
 .dropdownNotifications{
-    /* z-index: 100000 !important; */
+    z-index: 100000 !important;
     background-color: white;
+    height: fit-content;
+    width: 300px;
+    
+}
+
+
+.fc .fc-button-group{
+    z-index: 0;
+}
+
+.fc .fc-daygrid-day-top .fc-daygrid-day-number {
+    z-index: 0;
+}
+
+.fc .fc-scroller-harness{
+    z-index: 0;
 }

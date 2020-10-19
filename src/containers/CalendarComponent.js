@@ -234,6 +234,7 @@ const CalendarComponent = props => {
 
      return(
         <div className='calendar-div-container'>
+            <div>
              <FullCalendar 
                     timeZone= 'UTC'
                     slotDuration='00:15'
@@ -254,6 +255,7 @@ const CalendarComponent = props => {
                     eventDisplay='block'
                  />
                 <div>
+                </div>
                 <Modal show={show} onHide={handleClose}>
                  <Modal.Header closeButton>
                     <input className='edit-task-input-title' value={taskTitle} onChange={(e)=>setTaskTitle(e.target.value)}/> 
@@ -288,6 +290,7 @@ const mapStateToProps = (state) => {
         projects: state.dashboardReducer.projects,
         tasks: state.dashboardReducer.tasks,
         filtered_tasks: state.dashboardReducer.filtered_tasks,
+        cal_css: state.dashboardReducer.cal_css
     }
 }
 

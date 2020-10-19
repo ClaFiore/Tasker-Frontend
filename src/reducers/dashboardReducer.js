@@ -4,7 +4,8 @@ let initialState = {view: 'team member',
                     filtered_projects: [],
                     tasks: [],
                     filtered_tasks: [],
-                    notifications: []
+                    notifications: [],
+                    cal_css: false
                     }
 
 
