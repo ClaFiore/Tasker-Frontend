@@ -5,7 +5,7 @@ import {gettingManagedMembers} from '../actions'
 import {fetchingProjects} from '../actions'
 import './TeamMemberViewCont.css'
 import Badge from 'react-bootstrap/Badge'
-
+import Dropdown from 'react-bootstrap/Dropdown'
 
 const TeamMemberNav = props => {
 
@@ -87,13 +87,34 @@ const TeamMemberNav = props => {
     }
 
 
+    const handleNotifications = e => {
+        console.log(e)
+    }
+
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+        <a href="" ref={ref} onClick={e => {
+            e.preventDefault()
+            onClick(e)}}>
+                <i className="fas fa-bell fa-2x"></i>
+                <Badge pill variant="danger">{props.notifications.length > 0 ? props.notifications.length : null}</Badge>
+        </a>
+      ))
+      
+
     return(
         <div className={props.view === 'team member' ? 'navbar' : 'navManager'} >
-            
+                <Dropdown onSelect={(e) => handleNotifications(e)}>
                 <div className = "notification">
-                <i className="fas fa-bell fa-2x"></i>
-                <Badge pill variant="danger">3</Badge>
+                <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
+                {props.notifications.length > 0 ? 
+                <Dropdown.Menu >
+                    {props.notifications.map(notif => <div className='dropdownNotifications'><Dropdown.Item eventKey={notif.task_id} >
+                        <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
+                    </Dropdown.Item></div>)}
+                </Dropdown.Menu> 
+                : null} 
                 </div>
+                </Dropdown>
 
             <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
                 <option selected disabled>Menu</option>
@@ -143,7 +164,8 @@ const mapStateToProps = (state) => {
             tasks: state.dashboardReducer.tasks,
             filtered_tasks: state.dashboardReducer.filtered_tasks,
             managed_members: state.employeeReducer.managed_members,
-            managed_team_id: state.employeeReducer.current_user.employee.managed_team_id}
+            managed_team_id: state.employeeReducer.current_user.employee.managed_team_id,
+            notifications: state.dashboardReducer.notifications}
 }
 
 const mapDispatchToProps = (dispatch) => {

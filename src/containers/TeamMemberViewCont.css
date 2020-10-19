@@ -182,3 +182,8 @@
 .notification{
   margin-right: 10px;
 }
+
+.dropdownNotifications{
+    /* z-index: 100000 !important; */
+    background-color: white;
+}

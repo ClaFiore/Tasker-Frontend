@@ -245,12 +245,13 @@ const CalendarComponent = props => {
                         right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
                       }}
                     editable={true}
-                    weekends= {true}
+                    weekends= {false}
                     eventClick={(e) => displayEvent(e)}
                     dateClick = {(e) => console.log(e)}
                     eventDrop={(e) => dropEvent(e)}
                     eventResize={(e)=> dropEvent(e)}
                     events={formatEvents()}
+                    eventDisplay='block'
                  />
                 <div>
                 <Modal show={show} onHide={handleClose}>

@@ -217,6 +217,7 @@ function assigningTask(configObj){
         fetch(URL + 'tasks', configObj)
         .then(res => res.json())
         .then(newTask => {
+            console.log(newTask)
             if (newTask.error){
                 alert('Sorry, something went wrong')
             }
@@ -226,4 +227,23 @@ function assigningTask(configObj){
     }
 }
 
-export {assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function fetchedNotifications(notifications){
+    return{
+        type: 'my_notifications', payload: notifications
+    }
+}
+function fetchingNotifications(user_id){
+    let configObj = {method: 'GET', 
+                    headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`}
+    }
+    return (dispatch) => {
+    fetch(URL + 'notifications', configObj)
+    .then(res => res.json())
+    .then(allNotifications => {
+        let current_user_notifications = allNotifications.filter(notif => notif.team_member_id === user_id && notif.read === false)
+        dispatch(fetchedNotifications(current_user_notifications))
+    })
+    }
+}
+
+export {fetchingNotifications, assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}

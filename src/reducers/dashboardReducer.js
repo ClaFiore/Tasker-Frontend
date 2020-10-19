@@ -4,6 +4,7 @@ let initialState = {view: 'team member',
                     filtered_projects: [],
                     tasks: [],
                     filtered_tasks: [],
+                    notifications: []
                     }
 
 
@@ -112,6 +113,9 @@ let dashboardReducer = (state = initialState, action) => {
                         }
                         })
                 }
+        case 'my_notifications':
+                return {...state,
+                        notifications: action.payload}
         default:
             return state
     }       
