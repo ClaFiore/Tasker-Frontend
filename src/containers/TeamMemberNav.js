@@ -111,17 +111,24 @@ const TeamMemberNav = props => {
                 <Dropdown onSelect={(e) => handleNotifications(e)}>
                 <div className = "notification">
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
+                
+                
+                
                 {props.notifications.length > 0 ? 
                 <Dropdown.Menu >
-                    {props.notifications.map(notif => <div key={notif.id} className='dropdownNotifications'><Dropdown.Item eventKey={notif.id} >
-                        <div className='btnNotifDiv'><button className='btn-notif-unread'></button></div>
-                        <div className='notifContent'>
-                            <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
-                            <p className='notifMessage'>{notif.message}</p>
-                            <span className='timestamp'>{notif.time}</span>
-                        </div>
-                    </Dropdown.Item></div>)}
+                    {props.notifications.map(notif => 
+                        <div key={notif.id} className='dropdownNotifications'>
+                            <Dropdown.Divider />
+                            <Dropdown.Item eventKey={notif.id} >
+                                <div className={notif.read === false ? 'unReadNotif' : 'readNotif'}>
+                                    <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
+                                    <p className='notifMessage'>{notif.message}</p>
+                                    <span className='timestamp'>{notif.time}</span>
+                                </div>
+                            </Dropdown.Item>
+                        </div>)}
                 </Dropdown.Menu> 
+
                 : null} 
                 </div>
                 </Dropdown>

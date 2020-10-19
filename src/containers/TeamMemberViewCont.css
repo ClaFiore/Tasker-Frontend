@@ -206,13 +206,6 @@
     flex-direction: row;
 }
 
-/* .notifContent{
-    
-}
-
-.btnNotifDiv{
-
-} */
 
 .btn-notif-unread{
     width: 5px;
@@ -227,12 +220,21 @@
 }
 
 .notifMessage{
-    margin-left: 15px;
     margin-bottom: 0mm;
 }
 
 .timestamp{
-    color: grey;
+    font-size: smaller;
+}
+
+
+.unReadNotif{
+    color: #0F61D3;
+    font-weight: bold;
+}
+
+.readNotif{
+    color: black;
+    opacity: 0.5;
     font-size: small;
-    margin-left: 15px;
 }

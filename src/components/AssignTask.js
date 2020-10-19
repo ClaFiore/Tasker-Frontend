@@ -83,6 +83,7 @@ const AssignTask = (props) => {
                 start: todayStart,
                 end: todayEnd,
                 status: 'in progress',
+                content: e.target.content.value,
                 team_leader_id: props.current_user.employee.id
             })
         }
@@ -118,9 +119,11 @@ const AssignTask = (props) => {
                             <Form.Label>Title</Form.Label>
                             <Form.Control name="title" placeholder="Enter title" />
                         </Col>
+                    </Form.Row>
+                    <Form.Row>
                         <Col>
-                            <Form.Label>Notes</Form.Label>
-                            <Form.Control name="message" placeholder="Enter content" />
+                            <Form.Label>Content</Form.Label>
+                            <Form.Control name="content" placeholder="Enter content" />
                         </Col>
                     </Form.Row>
                     <br></br>
@@ -129,8 +132,15 @@ const AssignTask = (props) => {
                         <Form.Check inline name='priority' type="radio" label="Normal Priority" value='normal'/>
                         <Form.Check inline name='priority' type="radio" label="Low Priority" value='low'/>
                     </Form.Group>
+                    <Form.Row>
+                        <Col>
+                            <Form.Label>Message</Form.Label>
+                            <Form.Control name="message" placeholder="Enter content" />
+                        </Col>
+                    </Form.Row>
+                    <br></br>
                     <Button size='sm' variant="success" type="submit">
-                        Assign Task
+                            Assign Task
                     </Button>
                 </Form>   
             </Modal.Body>

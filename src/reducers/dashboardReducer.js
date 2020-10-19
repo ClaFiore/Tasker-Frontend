@@ -129,7 +129,8 @@ let dashboardReducer = (state = initialState, action) => {
                                 }else{
                                         return notif
                                 }
-                        })
+                        }),
+                        unread_notifications: state.unread_notifications.filter(notif => notif.read === false)
         }
         default:
             return state
