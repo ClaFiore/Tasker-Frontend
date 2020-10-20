@@ -43,10 +43,11 @@ const Login = props => {
     }
     
     return(
-        <div>
+        <div className='login-div'>
+            <div className='login-content'>
                 <div className='loginForm'>
-                <Form style={{width: '50%'}} onSubmit={(e) => login(e)}>
-                    <h1>Please login</h1>
+                <Form style={{width: '100%'}} onSubmit={(e) => login(e)}>
+                    <h1 className='please-login'>PLEASE  LOGIN</h1>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" name='email'/>
@@ -60,6 +61,7 @@ const Login = props => {
                     </Button>
                 </Form>
                 </div>
+            </div>
         </div>
     )
     
