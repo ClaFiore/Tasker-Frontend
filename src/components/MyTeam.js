@@ -45,7 +45,7 @@ const MyTeam = props => {
 
     return(
         <div className='my_team_container_div'>
-        <div >
+            <div>
         <Table striped bordered hover className='table'>
             <thead>
                 <tr>

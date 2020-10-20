@@ -33,6 +33,9 @@ const AssignTask = (props) => {
                 hh = hh - 12
                 americanFormat = 'PM'
             }
+            if (hh === 12){
+                americanFormat = 'PM'
+            }
 
         let hour = String(hh)
 
@@ -43,10 +46,11 @@ const AssignTask = (props) => {
                 min = '0' + min
             }
         let todayStart = mm + '-' + dd + '-' + yyyy + ' ' + hour + ':' + min + ' ' + americanFormat
+        let todayEnd
+
+        if (e.target.complete_by.value === 'asap'){
+        let todayPlusOneHour = new Date(today.getTime() + 60 * 60000)
         
-        
-        let todayPlusOneHour = new Date(today.getTime() + 30 * 60000)
-        console.log(todayPlusOneHour)
         let dd_end = String(todayPlusOneHour.getDate()).padStart(2, '0')
         let mm_end = String(todayPlusOneHour.getMonth() + 1).padStart(2, '0') 
         let yyyy_end = todayPlusOneHour.getFullYear()
@@ -59,6 +63,10 @@ const AssignTask = (props) => {
                 americanFormat_end = 'PM'
             }
 
+            if (hh_end === 12){
+                americanFormat_end = 'PM'
+            }
+
         let hour_end = String(hh_end)
 
             if (hour_end.split('').length === 1 ){
@@ -68,8 +76,14 @@ const AssignTask = (props) => {
                 min_end = '0' + min_end
             }
 
-        let todayEnd = mm_end + '-' + dd_end + '-' + yyyy_end + ' ' + hour_end + ':' + min_end + ' ' + americanFormat_end
+        todayEnd = mm_end + '-' + dd_end + '-' + yyyy_end + ' ' + hour_end + ':' + min_end + ' ' + americanFormat_end
+        
+    }else{
+            todayEnd = mm + '-' + dd + '-' + yyyy + ' ' + '06' + ':' + '00' + ' ' + 'PM'
+        }
 
+
+        console.log(todayEnd)
 
         let configObj = {
             method: 'POST',
@@ -132,6 +146,14 @@ const AssignTask = (props) => {
                         <Form.Check inline name='priority' type="radio" label="Normal Priority" value='normal'/>
                         <Form.Check inline name='priority' type="radio" label="Low Priority" value='low'/>
                     </Form.Group>
+                    <Form.Row>
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Label>Complete by:</Form.Label>
+                        <br></br>
+                        <Form.Check inline name='complete_by' type="radio" label="ASAP" value='asap'/>
+                        <Form.Check inline name='complete_by' type="radio" label="EOD" value='eod'/>
+                    </Form.Group>
+                    </Form.Row>
                     <Form.Row>
                         <Col>
                             <Form.Label>Message</Form.Label>
