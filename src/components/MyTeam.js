@@ -62,7 +62,7 @@ const MyTeam = props => {
             <tbody>
             {todaysTasks.map(task => <tr key={task.id} >
                 <td style={{fontWeight: 'bold'}}>{task.team_member.first_name} {task.team_member.last_name}</td>
-                <td>{task.start.split('T')[1].split('.')[0]}</td>
+                <td>{task.start.split('T')[1].split('.')[0].split(':')[0]}:{task.start.split('T')[1].split('.')[0].split(':')[1]}</td>
                 <td>{task.title}</td>
                 <td>{task.content}</td>
                 <td>{task.status === 'in progress' ? <Badge variant="warning">In Progress</Badge> : <Badge variant="success">Completed</Badge> }</td>
