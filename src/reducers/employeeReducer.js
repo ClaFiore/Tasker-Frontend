@@ -1,5 +1,7 @@
 let initialState = {current_user: {employee: 'loading'},
-                    managed_members: []}
+                    managed_members: [],
+                    peers: []
+                }
 
 
 let employeeReducer = (state = initialState, action) => {
@@ -23,6 +25,11 @@ let employeeReducer = (state = initialState, action) => {
                         return member
                     }
                 })
+            }
+        case 'all_peers':
+            return{
+                ...state,
+                peers: action.payload
             }
         default:
             return state

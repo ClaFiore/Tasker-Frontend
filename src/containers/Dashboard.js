@@ -14,10 +14,8 @@ const Dashboard = props => {
         if (props.view === 'team member'){
         props.fetchingProjects(props.team_id)
         props.fetchingTasks(props.current_employee.employee.id)}
-        else if (props.view === 'manager')
+        else 
         props.fetchingProjects(props.managed_team_id)
-        // else if (props.view === 'my_team')
-        // props.fetchingMyTeam(props.team_id)
     }, [])
 
 

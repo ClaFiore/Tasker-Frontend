@@ -1,8 +1,8 @@
 .my_team_container_div{
     width: 75vw;
-    height: 90vh;
-    background-color: pink;
+    height: fit-content;
     display: flex;
     align-self: center;
     margin-top: 10px;
 }
+

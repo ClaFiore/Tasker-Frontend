@@ -269,5 +269,25 @@ function readingNotification(notification_id, configObj){
     }
 }
 
+function myPeers(members){
+    return{
+        type: 'all_peers', payload: members
+    }
+}
 
-export {readingNotification, fetchingNotifications, assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
+function fetchingMyTeam(team_id, user_id){
+    let configObj = {method: 'GET', 
+                    headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${localStorage.token}`}
+    }
+    return (dispatch) => {
+        fetch(URL + 'teams/' + team_id, configObj)
+        .then(res => res.json())
+        .then(myTeam => {
+            let members = myTeam.team_members
+            let peers = members.filter(member => member.id !== user_id)
+            dispatch(myPeers(peers))
+        })
+    }
+}
+
+export {fetchingMyTeam, readingNotification, fetchingNotifications, assigningTask, gettingManagedMembers, deletingTask, markingTaskStatus, fetchingTasks, addingTask, deletingProject, updatingProject, addingNewProject, updatingUser, fetchingEmployee, fetchingProjects}
