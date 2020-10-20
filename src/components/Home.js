@@ -3,6 +3,7 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import './home.css'
 import Dashboard from '../containers/Dashboard'
+import Button from 'react-bootstrap/Button';
 
 const Home = props => {
     const login = () => {
@@ -11,7 +12,9 @@ const Home = props => {
 
     return(
         <div className='home-div'>
-            {localStorage.token ? <Redirect to='/dashboard'/> : <div> <h1>WELCOME TO TASKER</h1><button onClick={() => login()}>Login</button> </div>}
+            <div>
+            {localStorage.token ? <Redirect to='/dashboard'/> : <div className='home-content'> <h1>WELCOME TO TASKER</h1><button className='login-btn' onClick={() => login()}>Login</button> </div>}
+        </div>
         </div>
     )
 }

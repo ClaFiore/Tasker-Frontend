@@ -4,9 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-
 import './login.css'
-// const URL = 'http://localhost:3000/api/v1/'
+
+
 
 const Login = props => {
    
@@ -43,21 +43,23 @@ const Login = props => {
     }
     
     return(
-        <div className='loginForm'>
-        <Form style={{width: '50%'}} onSubmit={(e) => login(e)}>
-            <h1>Please login</h1>
-            <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" name='email'/>
-            </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" name='password'/>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+        <div>
+                <div className='loginForm'>
+                <Form style={{width: '50%'}} onSubmit={(e) => login(e)}>
+                    <h1>Please login</h1>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" name='email'/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" name='password'/>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+                </div>
         </div>
     )
     

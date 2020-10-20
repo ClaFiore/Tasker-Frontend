@@ -7,6 +7,7 @@ import './TeamMemberViewCont.css'
 import Badge from 'react-bootstrap/Badge'
 import Dropdown from 'react-bootstrap/Dropdown'
 
+
 const TeamMemberNav = props => {
 
     if (!props.logged){
@@ -111,6 +112,7 @@ const TeamMemberNav = props => {
 
     return(
         <div className={props.view === 'team member' ? 'navbar' : 'navManager'} >
+
                 <Dropdown onSelect={(e) => handleNotifications(e)}>
                 <div className = "notification">
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
@@ -168,7 +170,7 @@ const TeamMemberNav = props => {
                     <option value='all'>All Tasks</option>
                 </select>
             </div> : null}
-            
+
         </div>
     )
 }
