@@ -103,7 +103,7 @@ const TeamMemberNav = props => {
     }
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-        <a href="" ref={ref} onClick={e => {
+        <a className='afaBell' href="" ref={ref} onClick={e => {
             e.preventDefault()
             onClick(e)}}>
                 <i className="fas fa-bell fa-2x"></i>
