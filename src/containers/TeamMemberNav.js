@@ -121,7 +121,7 @@ const TeamMemberNav = props => {
                             <Dropdown.Divider />
                             <Dropdown.Item eventKey={notif.id} >
                                 <div className={notif.read === false ? 'unReadNotif' : 'readNotif'}>
-                                    <span style={{fontWeight: 'bold'}}>{notif.task.title}</span>
+                                    <span style={{fontWeight: 'bold'}}>{notif.header}</span>
                                     <p className='notifMessage'>{notif.message}</p>
                                     <span className='timestamp'>{notif.time}</span>
                                 </div>

@@ -197,6 +197,11 @@
     z-index: 0;
 }
 
+.notification{
+ max-height: 70%;
+ overflow: auto;
+}
+
 .dropdownNotifications{
     z-index: 100000 !important;
     background-color: white;
