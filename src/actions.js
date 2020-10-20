@@ -252,12 +252,19 @@ function readNotification(updatedNotification){
     }
 }
 
+function update_unreadNotification(updatedNotification){
+    return{
+        type: 'update_unread_notification', payload: updatedNotification
+    }
+}
+
 function readingNotification(notification_id, configObj){
     return (dispatch) => {
     fetch(URL + 'notifications/' + notification_id, configObj)
     .then(res => res.json())
     .then(updatedNotification => {
         dispatch(readNotification(updatedNotification))
+        dispatch(update_unreadNotification(updatedNotification))
     })
     }
 }

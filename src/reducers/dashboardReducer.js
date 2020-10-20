@@ -129,9 +129,12 @@ let dashboardReducer = (state = initialState, action) => {
                                 }else{
                                         return notif
                                 }
-                        }),
-                        unread_notifications: state.unread_notifications.filter(notif => notif.read === false)
+                        })
         }
+        case 'update_unread_notification':
+                return{...state,
+                        unread_notifications: state.unread_notifications.filter(notif => notif.id !== action.payload.id)
+                }
         default:
             return state
     }       
