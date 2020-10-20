@@ -75,6 +75,8 @@ const TeamCalendar = props => {
             if (int_s > 12){
                 int_s = int_s - 12
                 americanFormat_start = 'PM'
+            }else if (int_s === 12){
+                americanFormat_start = 'PM'
             }else{
                 americanFormat_start = 'AM'
             }
@@ -96,6 +98,8 @@ const TeamCalendar = props => {
         let int_e = parseInt(end_hh)
             if (int_e > 12){
                 int_e = int_e - 12
+                americanFormat_end = 'PM'
+            }else if (int_e === 12){
                 americanFormat_end = 'PM'
             }else{
                 americanFormat_end = 'AM'

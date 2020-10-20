@@ -80,6 +80,8 @@ const CalendarComponent = props => {
             if (int_s > 12){
                 int_s = int_s - 12
                 americanFormat_start = 'PM'
+            }else if (int_s === 12){
+                americanFormat_start = 'PM'
             }else{
                 americanFormat_start = 'AM'
             }
@@ -102,7 +104,10 @@ const CalendarComponent = props => {
             if (int_e > 12){
                 int_e = int_e - 12
                 americanFormat_end = 'PM'
-            }else{
+            }else if(int_e === 12){
+                americanFormat_end = 'PM'
+            }
+            else{
                 americanFormat_end = 'AM'
             }
         let time_end_string = String(int_e)
@@ -186,6 +191,11 @@ const CalendarComponent = props => {
                 hours = hours - 12
                 americanFormat = 'PM'
             }
+
+            if (hours === 12){
+                americanFormat = 'PM'
+            }
+
         let minutes = String(rangeStart.getMinutes())
 
         let newStart = mm + '-' + dd + '-' + yyyy + ' ' + hours + ':' + minutes + ' ' + americanFormat
@@ -203,6 +213,10 @@ const CalendarComponent = props => {
                 hours_end = hours_end - 12
                 americanFormat_end = 'PM'
             }
+            if (hours_end === 12){
+                americanFormat_end = 'PM'
+            }
+            
         let minutes_end = String(rangeEnd.getMinutes())
 
         let newEnd = mm_end + '-' + dd_end + '-' + yyyy_end + ' ' + hours_end + ':' + minutes_end + ' ' + americanFormat_end
