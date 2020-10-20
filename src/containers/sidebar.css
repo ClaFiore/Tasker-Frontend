@@ -1,0 +1,70 @@
+.sidebar-div{
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    height: 100vh;
+    width: 20vw;
+    flex-basis: auto;
+    background-color: #8FD5FF
+}
+
+.sideBarManager{
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    height: 100vh;
+    width: 20vw;
+    flex-basis: auto;
+    background-color: #1ABC9C;
+}
+
+
+.MembermanagerViewDiv{
+    margin-top: 60px;
+    background-color: #0F61D4;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+
+.profile-info{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #0F61D4;
+}
+
+
+.profileInfoManager{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+    align-items: center;
+}
+
+.create-project-btn{
+    margin-top: 10px;
+    
+}
+
+.ManagedMembers{
+    margin-top: 40px;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+}

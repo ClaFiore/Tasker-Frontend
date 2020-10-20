@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import {connect} from 'react-redux'
 import {updatingProject} from '../actions'
-
+import './project.css'
 
 const EditProject = (props) => {
     
@@ -35,9 +35,9 @@ const EditProject = (props) => {
     
     return (
       <>
-        <Button size='sm' variant="outline-primary" onClick={handleShow}>
+        <button className='editProjBtn' onClick={handleShow}>
           Edit
-        </Button>
+        </button>
   
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>

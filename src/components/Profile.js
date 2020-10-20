@@ -10,6 +10,7 @@ const Profile = props => {
     
     return(
         <div className='profile-container-div'>
+            <div className='profileItem'>
             <h3 style={{color: props.employee.color}}>Hello {props.employee.first_name}!</h3>
             <br></br>
             <p><span className='elenco'>Name: </span><span>{props.employee.first_name}</span></p>
@@ -26,6 +27,7 @@ const Profile = props => {
             <EditProfile />
             <br></br>
             <EditColor />
+            </div>
         </div>
     )
 }

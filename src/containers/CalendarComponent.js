@@ -247,8 +247,8 @@ const CalendarComponent = props => {
     }
 
      return(
-        <div className='calendar-div-container'>
-            <div>
+        <div className='calendBackground'>
+            <div className='calendar-div-container'>
              <FullCalendar 
                     timeZone= 'UTC'
                     slotDuration='00:15'

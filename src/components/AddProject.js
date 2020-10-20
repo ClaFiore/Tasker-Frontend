@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import {connect} from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import {addingNewProject} from '../actions'
-
+import '../containers/sidebar.css'
 
 const AddProject = (props) => {
     
@@ -32,7 +32,7 @@ const AddProject = (props) => {
 
     return (
       <div>
-        <Button size='sm' variant="outline-primary" onClick={handleShow}>
+        <Button size='sm' variant="light" onClick={handleShow}>
           Create New Project 
         </Button>
   

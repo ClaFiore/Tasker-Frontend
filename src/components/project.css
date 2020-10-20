@@ -1,0 +1,43 @@
+.projBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteProjBtn{
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.42857;
+    background-color: #fa8884;
+    border: none;
+    color: black;
+    margin: 5px 10px;
+}
+
+.doneProjBtn{
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.42857;
+    background-color: #49AC52;
+    border: none;
+    color: black;
+    margin: 5px 10px;
+}
+
+.editProjBtn{
+    border-radius: 5px;
+    border: none;
+    background-color: #0F61D4;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px 10px;
+}

@@ -6,6 +6,7 @@ import ProjectDetails from './ProjectDetails'
 import EditProject from './EditProject'
 import {updatingProject} from '../actions'
 import {deletingProject} from '../actions'
+import './project.css'
 
 const ProjectCard = props => {
     const {title, content, status, due_by} = props.project
@@ -41,9 +42,10 @@ const ProjectCard = props => {
                     Due by: {due_date}
                     </Card.Text>
                     {props.view === 'manager' && props.activity === 'projects' && props.project.status === 'in progress' ?
-                    <div><EditProject project={props.project}/>
-                    <Button onClick={()=> completingProject()} style={{'marginLeft': '10px'}} variant="success" size='sm'>Done</Button>
-                    <Button onClick={()=> deletingProject()} style={{'marginLeft': '10px'}} variant="danger" size='sm'> X </Button>
+                    <div className='projBtns'>
+                        <EditProject project={props.project}/>
+                        <button className='doneProjBtn' onClick={()=> completingProject()}>&#10004;</button>
+                        <button className='deleteProjBtn' onClick={()=> deletingProject()} >&#10008;</button>
                     </div>
                     :
                     null}

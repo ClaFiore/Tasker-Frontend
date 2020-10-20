@@ -95,7 +95,7 @@ const CreateTask = (props) => {
     return(
         <div>
             <Button size='sm' variant="light" onClick={handleShow}>
-                Create New Task 
+                New Task 
             </Button>
   
         <Modal show={show} onHide={handleClose}>

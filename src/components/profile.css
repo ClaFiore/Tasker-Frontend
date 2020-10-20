@@ -1,6 +1,26 @@
 .profile-container-div{
-    margin: 20px;
+    width:100%;
+    height: 92.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../images/blue-lines-office.png') ;
+    background-position: right top;
+    background-size: cover;
 }
+
+.profileItem{
+    background-color: white;
+    padding: 20px 50px;
+    /* margin: 20px; */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .elenco{
     color: #0F61D4;
