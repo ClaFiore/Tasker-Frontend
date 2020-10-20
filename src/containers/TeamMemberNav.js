@@ -6,7 +6,9 @@ import {fetchingProjects, readingNotification} from '../actions'
 import './TeamMemberViewCont.css'
 import Badge from 'react-bootstrap/Badge'
 import Dropdown from 'react-bootstrap/Dropdown'
-
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 const TeamMemberNav = props => {
 
@@ -111,14 +113,55 @@ const TeamMemberNav = props => {
       
 
     return(
-        <div className={props.view === 'team member' ? 'navbar' : 'navManager'} >
+        <div className={props.view === 'team member' ? 'navbarT' : 'navManager'} >
+            <Navbar>
+        
+            
+            
+            {props.activity === 'projects' ? <div>
+                <NavDropdown title="Filter Projects By" className='menu' onSelect={(e) => filterProjects(e)}>
+                    <NavDropdown.Item eventKey='completed'>Completed</NavDropdown.Item>
+                    <NavDropdown.Item eventKey='in progress'>In Progress</NavDropdown.Item>
+                    <NavDropdown.Item eventKey='all'>All</NavDropdown.Item>
+                </NavDropdown>
+            </div> : null}
+         
+            
+            {props.activity === 'calendar' ? 
+            <Nav.Item>
+                <NavDropdown title="Filter Tasks by Priority" className='menu' onSelect={(e) => filterTasks(e)}>
+                    <NavDropdown.Item eventKey='high' className='priority-option'>High Priority</NavDropdown.Item>
+                    <NavDropdown.Item eventKey='normal' className='priority-option'>Normal Priority</NavDropdown.Item>
+                    <NavDropdown.Item eventKey='low' className='priority-option'>Low Priority</NavDropdown.Item>
+                    <NavDropdown.Item eventKey='all'>All Tasks</NavDropdown.Item>
+                </NavDropdown>
+            </Nav.Item>
+             : null}    
 
-                <Dropdown onSelect={(e) => handleNotifications(e)}>
+            {props.activity === 'calendar' ? 
+                <Nav.Item>
+                <NavDropdown title="Filter Tasks by Project" className='menu' onSelect={(e) => filterTasks(e)}>
+                    {props.projects.map(p => <NavDropdown.Item key={p.id} eventKey={p.id}>{p.title}</NavDropdown.Item>)}
+                    <NavDropdown.Item eventKey='all'>All Tasks</NavDropdown.Item>
+                </NavDropdown>
+                </Nav.Item>
+            : null}   
+
+            <NavDropdown title="Menu" id="nav-dropdown" className='menu' onSelect={(e) => handleMenu(e)}>
+                {props.view === 'manager' ? <NavDropdown.Item eventKey='team_calendar'>Team's Calendar</NavDropdown.Item> : null}
+                {props.view === 'team member' ? <NavDropdown.Item eventKey='calendar'>My Calendar</NavDropdown.Item> : null}
+                {props.view === 'team member' ? <NavDropdown.Item eventKey='profile'>My Profile</NavDropdown.Item> : null}
+                {props.view === 'team member' ? <NavDropdown.Item eventKey='my_team'>My Team</NavDropdown.Item> : null}
+                <NavDropdown.Item eventKey='projects'>Team's Projects</NavDropdown.Item>
+                {props.managed_team ? <NavDropdown.Item eventKey='switchTeam'>Switch Team</NavDropdown.Item> : null}
+                <NavDropdown.Item eventKey='logout'>Logout</NavDropdown.Item>
+            </NavDropdown>
+
+            
+                <Dropdown drop="left" onSelect={(e) => handleNotifications(e)}>
                 <div className = "notification">
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
-                
-                
-                
+ 
                 {props.notifications.length > 0 ? 
                 <Dropdown.Menu >
                     {props.notifications.map(notif => 
@@ -138,39 +181,10 @@ const TeamMemberNav = props => {
                 </div>
                 </Dropdown>
 
-            <select className='menu' onChange={(e) => handleMenu(e.target.value)}>
-                <option selected disabled>Menu</option>
-                {props.view === 'manager' ? <option value='team_calendar'>Team's Calendar</option> : null}
-                {props.view === 'team member' ? <option value='calendar'>View My Calendar</option> : null}
-                {props.view === 'team member' ? <option value='profile'>View My Profile</option> : null}
-                {props.view === 'team member' ? <option value='my_team'>My Team</option> : null}
-                <option value='projects'>View Team's Projects</option>
-                {props.managed_team ? <option value='switchTeam'>Switch Team</option> : null}
-                <option value='logout'>Logout</option>
-            </select>
-            {props.activity === 'projects' ? <div>
-                <select className='menu' onChange={(e) => filterProjects(e.target.value)}>
-                    <option disabled selected>Filter Projects by</option>
-                    <option value='completed'>Completed</option>
-                    <option value='in progress'>In Progress</option>
-                    <option value='all'>All</option>
-                </select>
-            </div> : null}
-            {props.activity === 'calendar' ? <div>
-                <select className='menu' onChange={(e) => filterTasks(e.target.value)}>
-                    <option disabled selected>Filter Tasks by Priority</option>
-                    <option value='high' className='priority-option'>High Priority</option>
-                    <option value='normal' className='priority-option'>Normal Priority</option>
-                    <option value='low' className='priority-option'>Low Priority</option>
-                    <option value='all'>All Tasks</option>
-                </select>
-                <select className='menu' onChange={(e) => filterTasks(e.target.value)}>
-                    <option disabled selected>Filter Tasks by Project</option>
-                    {props.projects.map(p => <option key={p.id} value={p.id}>{p.title}</option>)}
-                    <option value='all'>All Tasks</option>
-                </select>
-            </div> : null}
-
+                
+            
+           
+        </Navbar>
         </div>
     )
 }

@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import listPlugin from '@fullcalendar/list';
+
 import {connect} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './my_team.css'

@@ -31,8 +31,9 @@
     width: 80vw;
     height: 60px;
     background: #1ABC9C;
-    /* position: absolute; */
+    padding-right: 10px;
     z-index: 1;
+
 }
 
 .profileInfoManager{
@@ -111,16 +112,15 @@
     cursor: pointer;
 }
 
-.navbar {
+.navbarT {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-start;
-    flex-basis: auto;
+    padding: 0;
     width: 80vw;
     height: 60px;
     background: #8FD5FF;
-    
-    /* position: absolute; */
+    padding-right: 10px;
     z-index: 1; 
 }
 
