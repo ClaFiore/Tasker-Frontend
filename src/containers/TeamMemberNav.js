@@ -34,6 +34,9 @@ const TeamMemberNav = props => {
             case 'team_calendar':
                 props.changeActivity(value)
                 break
+            case 'my_team':
+                props.changeActivity(value)
+                break
             case 'switchTeam':
                 if (props.view === 'team member')
                 {props.change_view('manager')
@@ -138,6 +141,7 @@ const TeamMemberNav = props => {
                 {props.view === 'manager' ? <option value='team_calendar'>Team's Calendar</option> : null}
                 {props.view === 'team member' ? <option value='calendar'>View My Calendar</option> : null}
                 {props.view === 'team member' ? <option value='profile'>View My Profile</option> : null}
+                {props.view === 'team member' ? <option value='my_team'>My Team</option> : null}
                 <option value='projects'>View Team's Projects</option>
                 {props.managed_team ? <option value='switchTeam'>Switch Team</option> : null}
                 <option value='logout'>Logout</option>
