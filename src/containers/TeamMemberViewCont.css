@@ -180,7 +180,7 @@
     margin-right: 5px;
     margin-top: 5px;
     float: left;
-    background-color: #0F61D3;
+    background-color: #2C3E50;
 }
 
 .notifMessage{
@@ -193,13 +193,13 @@
 
 
 .unReadNotif{
-    color: #0F61D3;
+    color: #0A2659;
     font-weight: bold;
 }
 
 .readNotif{
-    color: black;
-    opacity: 0.5;
+    color: #2C3E50;
+    opacity: 0.75;
     font-size: small;
 }
 

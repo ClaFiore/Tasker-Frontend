@@ -33,6 +33,7 @@
     justify-items: center;
     flex-direction: column;
     align-items: center;
+    border: 2px #0A2659 solid;
 }
 
 

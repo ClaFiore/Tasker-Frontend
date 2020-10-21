@@ -152,17 +152,17 @@ const CreateTask = (props) => {
                         <Form.Check inline name='priority' type="radio" label="Low Priority" value='low'/>
                     </Form.Group>
 
-                    <Button size='sm' variant="success" type="submit">
+                    <button className='createTaskBtn' type="submit">
                         Add Task
-                    </Button>
+                    </button>
                 </Form>
                 
           </Modal.Body>
-            <Modal.Footer>
+            {/* <Modal.Footer>
                 <Button size='sm' variant="secondary" onClick={handleClose}>
                 Back
                 </Button>
-            </Modal.Footer>
+            </Modal.Footer> */}
         </Modal>
         </div>
     )

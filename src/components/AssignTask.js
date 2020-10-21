@@ -161,9 +161,9 @@ const AssignTask = (props) => {
                         </Col>
                     </Form.Row>
                     <br></br>
-                    <Button size='sm' variant="success" type="submit">
+                    <button className='assignTaskBtn' type="submit">
                             Assign Task
-                    </Button>
+                    </button>
                 </Form>   
             </Modal.Body>
         </Modal>
