@@ -22,7 +22,24 @@
 }
 
 
-.elenco{
-    color: #0F61D4;
+.elencoMember{
+    color: #0A2659;
     font-weight: bold;
+}
+
+.editProfBtn{
+    color: white;
+    background-color: #0A2659;
+    border: 1px #0A2659;
+    justify-self: center;
+    width: 100%;
+    /* margin: 10px; */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.editProfBtn:hover{
+    background-color: white;
+    color: #0A2659;
+    border: 1px #0A2659;
 }

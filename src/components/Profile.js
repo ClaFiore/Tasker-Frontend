@@ -13,16 +13,16 @@ const Profile = props => {
             <div className='profileItem'>
             <h3 style={{color: props.employee.color}}>Hello {props.employee.first_name}!</h3>
             <br></br>
-            <p><span className='elenco'>Name: </span><span>{props.employee.first_name}</span></p>
-            <p><span className='elenco'>Last Name: </span><span>{props.employee.last_name}</span></p>
-            <p><span className='elenco'>Title: </span><span>{props.employee.title}</span></p>
-            <p><span className='elenco'>Department: </span><span>{props.employee.department}</span></p>
-            <p><span className='elenco'>Member of: </span><span>{props.team.name}</span></p>
-            {props.managed_team ? <p><span className='elenco'>Manager of: </span><span> {props.managed_team.name} </span></p> : null}
-            <p><span className='elenco'>Phone Number: </span><span>{props.employee.phone}</span></p>
-            <p><span className='elenco'>Email Address: </span><span>{props.employee.email}</span></p>
-            <p><span className='elenco'>Home Address: </span><span>{props.employee.address}</span></p>
-            <p><span className='elenco'>Date of Birth: </span><span>{props.employee.dob}</span></p>
+            <p><span className='elencoMember'>Name: </span><span>{props.employee.first_name}</span></p>
+            <p><span className='elencoMember'>Last Name: </span><span>{props.employee.last_name}</span></p>
+            <p><span className='elencoMember'>Title: </span><span>{props.employee.title}</span></p>
+            <p><span className='elencoMember'>Department: </span><span>{props.employee.department}</span></p>
+            <p><span className='elencoMember'>Member of: </span><span>{props.team.name}</span></p>
+            {props.managed_team ? <p><span className='elencoMember'>Manager of: </span><span> {props.managed_team.name} </span></p> : null}
+            <p><span className='elencoMember'>Phone Number: </span><span>{props.employee.phone}</span></p>
+            <p><span className='elencoMember'>Email Address: </span><span>{props.employee.email}</span></p>
+            <p><span className='elencoMember'>Home Address: </span><span>{props.employee.address}</span></p>
+            <p><span className='elencoMember'>Date of Birth: </span><span>{props.employee.dob}</span></p>
             <br></br>
             <EditProfile />
             <br></br>

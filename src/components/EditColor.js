@@ -28,18 +28,18 @@ const EditColor = props => {
 
     return(
         <div>
-            <Button size='sm' variant="primary" onClick={handleShow}>
+            <button className='editProfBtn' onClick={handleShow}>
                 Edit Color
-            </Button>
+            </button>
             <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton><Modal.Title>Pick Your Favorite Color</Modal.Title></Modal.Header>
             <Modal.Body>
                 <CirclePicker onChangeComplete={pickColor} />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={() => updateUserColor()}>
+                <button className='editProfBtn' onClick={() => updateUserColor()}>
                     Pick
-                </Button>
+                </button>
             </Modal.Footer>
             </Modal>
         </div>

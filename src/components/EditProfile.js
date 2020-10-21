@@ -40,9 +40,9 @@ const EditProfile = props => {
     
     return(
         <div >
-            <Button size='sm' variant="primary" onClick={handleShow}>
+            <button className='editProfBtn' onClick={handleShow}>
                 Edit Info
-            </Button>
+            </button>
             
             <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -85,16 +85,16 @@ const EditProfile = props => {
                 <br></br>
                 
                 
-                <Button size="sm" variant="outline-primary" type="submit">
+                <button className='editProfBtn' type="submit">
                     Update Information
-                </Button>
+                </button>
             </Form>
             </Modal.Body>
-            <Modal.Footer>
+            {/* <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Back
                 </Button>
-            </Modal.Footer>
+            </Modal.Footer> */}
         </Modal>
         </div>
     )
