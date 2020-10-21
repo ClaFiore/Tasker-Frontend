@@ -33,7 +33,7 @@ const EditColor = props => {
             </button>
             <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton><Modal.Title>Pick Your Favorite Color</Modal.Title></Modal.Header>
-            <Modal.Body>
+            <Modal.Body style={{paddingLeft: '25%'}}>
                 <CirclePicker onChangeComplete={pickColor} />
             </Modal.Body>
             <Modal.Footer>

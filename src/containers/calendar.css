@@ -10,7 +10,7 @@
 }
 
 .display-task-modal-span{
-    color: #0F61D4;
+    color: #0A2659;
     font-weight: bold;
 }
 
@@ -56,10 +56,16 @@
 .edit-btn{
     border-radius: 5px;
     border: none;
-    background-color: #0F61D4;
+    background-color: #0A2659;
     color: white;
     padding: 5px 10px;
     margin: 5px 10px;
+}
+
+.edit-btn:hover{
+    background-color: white;
+    color: #0A2659;
+    border-color: #0A2659;
 }
 
 .edit-task-input{
@@ -80,7 +86,7 @@
 .edit-task-input-title{
     width: 100%;
     border: transparent;
-    color: #0F61D4;
+    color: #0A2659;
     font-weight: bold;
     font-size: large;
 }

@@ -21,7 +21,7 @@ const ProjectDetails = (props) => {
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>{props.project.title}</Modal.Title>
+            <Modal.Title style={{color: '#0A2659'}}>{props.project.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>{props.project.content}</Modal.Body>
           <Modal.Body>Status: {props.project.status}</Modal.Body>
