@@ -11,27 +11,31 @@ const TeamSideBar = props => {
 
     return(
         <div className={props.view === 'team member' ? 'sidebar-div' : 'sideBarManager'}>
+            <div className='topChildren'>
                 <div className={props.view === 'team member' ? 'memberViewDiv' : 'managerViewDiv'}>
                     <h4>{props.view.toUpperCase()}</h4>
                     {props.view === 'manager' ? <p>'{props.managed_team.name}'</p> : <p>'{props.team.name}'</p>}
                 </div>
-            <div className={props.view ==='team member' ? 'profile-info' : 'profileInfoManager'}>
-                <h4>{props.employee.first_name}</h4>
-                <h4>{props.employee.last_name}</h4>
-                <br></br>
-                <p>Title: {props.employee.title}</p>
-                <p>Department: {props.employee.department}</p>
+                <div className={props.view ==='team member' ? 'profile-info' : 'profileInfoManager'}>
+                    <h4>{props.employee.first_name}</h4>
+                    <h4>{props.employee.last_name}</h4>
+                    <br></br>
+                    <p>Title: {props.employee.title}</p>
+                    <p>Department: {props.employee.department}</p>
+                </div>
+
+                {props.activity === 'calendar' && props.view === 'team member' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
+                {props.activity === 'team_calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
+                {props.view === 'manager' && props.activity === 'projects' ? <div className='create-project-btn'> <AddProject/> </div> : null}
+                {props.view === 'manager' ? <div className='ManagedMembers'>{props.managed_members.map(member => <div key={member.id} className='legenda-mini-div'><button className='managed-members-circle' style={{'backgroundColor': `${member.color}`}}></button><p>{member.first_name} {member.last_name}</p></div>)}</div> : null}
+            
             </div>
-            {props.activity === 'calendar' && props.view === 'team member' ? <div className='create-project-btn'> <CreateTask /> </div> : null}
-            {props.activity === 'team_calendar' && props.view === 'manager' ? <div className='create-project-btn'> <AssignTask /> </div> : null}
-            {props.view === 'manager' && props.activity === 'projects' ? <div className='create-project-btn'> <AddProject/> </div> : null}
-            {props.view === 'manager' ? <div className='ManagedMembers'>{props.managed_members.map(member => <div key={member.id} className='legenda-mini-div'><button className='managed-members-circle' style={{'backgroundColor': `${member.color}`}}></button><p>{member.first_name} {member.last_name}</p></div>)}</div> : null}
-            <div className='logoDiv'>
-                {props.view === 'manager' ? <img className='logoimg' src={require('../images/taskerManager.png')}/>
+
+            {props.view === 'manager' ? <div className=''><img className='logoimg' src={require('../images/taskerManager.png')}/></div>
                 :
-                <img className='logoimg' src={require('../images/taskerTeam.png')}/>
-                }
-            </div>
+                <div className='logoDivTeam'><img className='logoimg' src={require('../images/taskerTeam.png')}/></div>
+            }
+            
         </div>
 
     )

@@ -46,4 +46,20 @@
     font-stretch: extra-expanded;
     margin-bottom: 30px;
     padding-top: 20px;
+    color: #0A2659;
+}
+
+.loginSubmitBtn{
+    color: #0A2659;
+    border: 1px #0A2659;
+    justify-self: center;
+    width: 80px;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.loginSubmitBtn:hover{
+    background-color: #0A2659;
+    color: white;
 }

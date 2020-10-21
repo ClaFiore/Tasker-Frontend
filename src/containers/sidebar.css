@@ -5,10 +5,16 @@
     height: 40px;
 }
 
-/* .logoDiv{
-   
-} */
+.logoDivTeam{
+   display: flex;
+   margin-top: 220px;
+   align-self: baseline;
+}
 
+.topChildren{
+    display: flex;
+    flex-direction: column;
+}
 
 .sidebar-div{
     display: flex;
@@ -20,6 +26,7 @@
     /* justify-content: space-evenly; */
     background-color: #0A2659;
 }
+
 
 .sideBarManager{
     display: flex;

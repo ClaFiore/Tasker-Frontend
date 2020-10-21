@@ -57,9 +57,9 @@ const Login = props => {
                         <Form.Control type="password" placeholder="Password" name='password'/>
                     </Form.Group>
                     <br></br>
-                    <Button variant="primary" type="submit">
+                    <button className='loginSubmitBtn' type="submit">
                         Submit
-                    </Button>
+                    </button>
                 </Form>
                 </div>
             </div>
