@@ -13,7 +13,7 @@ const Home = props => {
     return(
         <div className='home-div'>
             <div>
-            {localStorage.token ? <Redirect to='/dashboard'/> : <div className='home-content'> <h1>WELCOME TO TASKER</h1><button className='login-btn' onClick={() => login()}>Login</button> </div>}
+            {localStorage.token ? <Redirect to='/dashboard'/> : <div className='home-content'> <img className='homeLogo' src={require('../images/taskerHome.png')}/><button className='login-btn' onClick={() => login()}>Login</button> </div>}
         </div>
         </div>
     )

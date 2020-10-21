@@ -266,7 +266,7 @@ const CalendarComponent = props => {
                     eventDrop={(e) => dropEvent(e)}
                     eventResize={(e)=> dropEvent(e)}
                     events={formatEvents()}
-                    eventDisplay='block'
+                    // eventDisplay='block'
                  />
                 <div>
                 </div>
