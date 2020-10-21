@@ -14,16 +14,6 @@
 }
 
 
-.nav-link {
-    color: white;
-    /* color: #0F61D4; */
-}
-
-.nav-link:hover{
-    color: #0F61D4;
-    /* color: white; */
-}
-
 .navManager{
     display: flex;
     flex-direction: row-reverse;
@@ -105,7 +95,7 @@
     padding: 0;
     width: 80vw;
     height: 60px;
-    background: #8FD5FF;
+    background: #0A2659;
     padding-right: 10px;
     z-index: 1; 
     font-weight: bold;
@@ -113,7 +103,7 @@
 
 
 .menu{
-    color: #0F61D3;
+    color: #0A2659;
     margin: 10px;
     padding: 5px;
     /* border-radius: 5px, #0F61D3; */
@@ -220,6 +210,16 @@
 }
 
 .afaBell:hover{
-    color: #0F61D4;
+    color: #8FD5FF;
+    /* color: white; */
+}
+
+.nav-link {
+    color: white;
+    /* color: #0F61D4; */
+}
+
+.nav-link:hover{
+    color: #8FD5FF;
     /* color: white; */
 }

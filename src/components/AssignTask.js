@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import './createTask.css'
 import {assigningTask} from '../actions'
-
+import './createTask.css'
 
 
 const AssignTask = (props) => {
@@ -107,9 +107,9 @@ const AssignTask = (props) => {
 
     return(
         <div>
-            <Button size='sm' variant="light" onClick={handleShow}>
+            <button className='assignTaskBtn' onClick={handleShow}>
                 Assign Task 
-            </Button>
+            </button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton><Modal.Title>Assign Task</Modal.Title></Modal.Header>
             <Modal.Body>

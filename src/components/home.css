@@ -23,8 +23,8 @@
 
 
 .login-btn{
-    color: #0F61D3;
-    border: 1px #0F61D3;
+    color: #0A2659;
+    border: 1px #0A2659;
     justify-self: center;
     width: 80px;
     margin: 10px;
@@ -33,7 +33,7 @@
 }
 
 .login-btn:hover{
-    background-color: #0F61D3;
+    background-color: #0A2659;
     color: white;
 }
 
@@ -52,11 +52,11 @@ h1{
     justify-items: center;
     flex-direction: column;
     align-items: center;
+    border: 2px #0A2659 solid;
 }
 
 .homeLogo{
-    
     height: 100px;
     width: 400px;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
