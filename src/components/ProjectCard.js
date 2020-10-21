@@ -32,7 +32,7 @@ const ProjectCard = props => {
     return(
         <div>
             <div>
-            <Card style={{ width: '18rem', margin: '20px' }}>
+            <Card style={{ width: '18rem', margin: '20px', height: '210px' }}>
                 <Card.Body>
                     <Card.Title><ProjectDetails project={props.project}/></Card.Title>
                     <Card.Text>

@@ -3,7 +3,8 @@
 .calendar-div-manager{
     width: 70vw;
     height: 90vh;
-    border: 2px solid #1ABC9C;
+    /* border: 2px solid #1ABC9C; */
+    border: 2px solid #2C3E50;
     overflow: auto;
     display: inline-block;
     justify-content: center;
@@ -13,11 +14,13 @@
 
 
 .nav-link {
-    color: #0F61D4;
+    color: white;
+    /* color: #0F61D4; */
 }
 
 .nav-link:hover{
-    color: white;
+    color: #0F61D4;
+    /* color: white; */
 }
 
 .navManager{
@@ -27,7 +30,8 @@
     flex-basis: auto;
     width: 80vw;
     height: 60px;
-    background: #1ABC9C;
+    /* background: #1ABC9C; */
+    background: #2C3E50;
     padding-right: 10px;
     z-index: 1;
     font-weight: bold;
@@ -75,10 +79,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 80vw;
+    height: 92.5vh;
+    align-items: center;
+    justify-content: center;
+    background: url('../images/blue-lines-office.png') ;
+    background-position: right top;
+    background-size: cover;
 }
 
+
 #project-card-title{
-    color:  #0F61D4
+    color:  #0F61D4;
 }
 
 #project-card-title:hover{
@@ -201,9 +212,11 @@
 
 .afaBell{
     /* color: #2C3E50; */
-    color: #0F61D4;
+    color: white;
+    /* color: #0F61D4; */
 }
 
 .afaBell:hover{
-    color: white;
+    color: #0F61D4;
+    /* color: white; */
 }
