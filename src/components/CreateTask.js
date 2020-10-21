@@ -143,7 +143,7 @@ const CreateTask = (props) => {
                     <br></br>
                     <select id='dropdown-create-task' name='project_id'>
                         <option>Project</option>
-                        {props.projects.map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
+                        {props.projects.filter(proj => proj.status === 'in progress').map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
                     </select>
                     <br></br>
                     <Form.Group controlId="formBasicCheckbox">
