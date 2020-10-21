@@ -286,7 +286,7 @@ const CalendarComponent = props => {
                  <Modal.Footer>
                         <button className='btn-circle-red' onClick={() => deleteTask()}>&#10008;</button>
                          {taskStatus === 'in progress' ? <button className='btn-circle-green' onClick={() => markTaskAsComplete()}>&#10004;</button> : <button className='btn-circle-yellow' onClick={() => markTaskAsInProgress()}>&#x270d;</button>}
-                        <Button size='sm' variant="primary" className='edit-btn' onClick={() => updateTask()}>Update</Button>
+                        <button className='edit-btn' onClick={() => updateTask()}>Update</button>
 
                      </Modal.Footer>
                  </Modal>

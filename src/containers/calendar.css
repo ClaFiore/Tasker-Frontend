@@ -23,6 +23,7 @@
     font-size: 15px;
     line-height: 1.42857;
     background-color: #49AC52;
+    border: none;
 }
 
 .btn-circle-yellow {
@@ -36,6 +37,7 @@
     background-color: #FAF784;
     /* background-color: #0F61D4; */
     color: black;
+    border: none;
 }
 
 .btn-circle-red {
@@ -48,11 +50,16 @@
     line-height: 1.42857;
     background-color: #fa8884;
     color: black;
+    border: none;
 }
 
 .edit-btn{
-    float: left;
-    margin-right: 50%;
+    border-radius: 5px;
+    border: none;
+    background-color: #0F61D4;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px 10px;
 }
 
 .edit-task-input{

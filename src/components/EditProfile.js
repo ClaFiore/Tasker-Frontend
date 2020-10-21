@@ -40,7 +40,7 @@ const EditProfile = props => {
     
     return(
         <div >
-            <Button size='sm' variant="outline-primary" onClick={handleShow}>
+            <Button size='sm' variant="primary" onClick={handleShow}>
                 Edit Info
             </Button>
             

@@ -1,8 +1,18 @@
 .my_team_container_div{
-    width: 75vw;
     height: fit-content;
     display: flex;
     align-self: center;
-    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 80vw;
+    height: 92.5vh;
+    background: url('../images/blue-lines-office.png') ;
+    background-position: right top;
+    background-size: cover;
+}
+
+.table {
+    background-color: white;
 }
 

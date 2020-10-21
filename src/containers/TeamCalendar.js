@@ -123,6 +123,7 @@ const TeamCalendar = props => {
     }
 
     return(
+        <div className='calendBackground'>
         <div className='calendar-div-manager'>
              <FullCalendar 
                     timeZone= 'UTC'
@@ -161,6 +162,7 @@ const TeamCalendar = props => {
                     </Modal.Header>
                  </Modal>
                 </div>
+        </div>
         </div>
     )
 }
