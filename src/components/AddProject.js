@@ -32,9 +32,9 @@ const AddProject = (props) => {
 
     return (
       <div>
-        <Button size='sm' variant="light" onClick={handleShow}>
-          Create New Project 
-        </Button>
+        <button className='addProjBtn' onClick={handleShow}>
+          New Project 
+        </button>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

@@ -34,6 +34,12 @@ button.btn-light:hover{
     font-weight: bold;
 }
 
+.assignTaskBtn:hover{
+    color: #2C3E50;
+    background-color: white;
+    border-color: white;
+}
+
 .createTaskBtn{
     background-color: #0A2659;
     border: 1px solid;
@@ -44,11 +50,7 @@ button.btn-light:hover{
     font-weight: bold;
 }
 
-.assignTaskBtn:hover{
-    color: #2C3E50;
-    background-color: white;
-    border-color: white;
-}
+
 
 .createTaskBtn:hover{
     color: #0A2659;
