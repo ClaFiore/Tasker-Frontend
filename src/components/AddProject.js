@@ -33,7 +33,7 @@ const AddProject = (props) => {
     return (
       <div>
         <button className='addProjBtn' onClick={handleShow}>
-          New Project 
+          Create New Project 
         </button>
   
         <Modal show={show} onHide={handleClose}>
